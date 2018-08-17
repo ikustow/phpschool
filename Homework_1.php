@@ -24,6 +24,13 @@ echo "\n<- End task 2";
 
 echo "\ntask 3 ->\n";
 
+$age = mt_rand(1, 99);
+//echo $age;
 
+if ($age >= 18 && $age <= 65){
+ echo "Вам еще работать и работать";
+} elseif ($age > 65) {
+    echo "Вам пора на пенсию";
+}
 
 echo "\n<- End task 3";
