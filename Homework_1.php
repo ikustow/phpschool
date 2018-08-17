@@ -39,7 +39,10 @@ if ($age >= 18 && $age <= 65){
 
 echo "\n<- End task 3";
 
+//Задание 4
+
 echo "\ntask 4 ->\n";
+
 $day = mt_rand(1, 10);
 switch ($day) {
     case 0:
@@ -47,8 +50,8 @@ switch ($day) {
     case 2:
     case 4:
     case 5:
-         echo "Это рабочий день";
-         break;
+        echo "Это рабочий день";
+        break;
     case 6:
     case 7:
         echo "Это выходной день";
@@ -57,4 +60,35 @@ switch ($day) {
         echo "Неизвестный день";
 }
 
-echo "\n<- End task 4";
+echo "\n <- End task 4";
+
+//Задание 5
+echo "\ntask 5 ->\n";
+
+$bmw = array(
+    "model" => "x5",
+    "speed" => "120",
+    "doors"=> "5",
+    "year"  => "2015",
+);
+$toyota = array(
+    "model" => "Camry",
+    "speed" => "180",
+    "doors" => "5",
+    "year"  => "2017",
+);
+$opel = array(
+    "model" => "Astra",
+    "speed" => "150",
+    "doors" => "3",
+    "year"  => "2010",
+);
+
+$cars["bmw"] = $bmw;
+$cars["toyota"] = $toyota;
+$cars["opel"] = $opel;
+
+
+print_r ($cars);
+
+echo "\n <- End task 5";
