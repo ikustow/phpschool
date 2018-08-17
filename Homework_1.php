@@ -89,6 +89,9 @@ $cars["toyota"] = $toyota;
 $cars["opel"] = $opel;
 
 
-print_r ($cars);
+//print_r ($cars);
+foreach($cars  as $key => $value) {
+    echo " CAR $key \n $value[model] $value[speed] $value[doors] $value[year] \n";
+}
 
 echo "\n <- End task 5";
