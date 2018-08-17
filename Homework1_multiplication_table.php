@@ -2,9 +2,9 @@
 <body>
 <table cellpadding="5" border = "1">
     <?php
-    for($i = 0; $i < 10; $i++) {
+    for($i = 0; $i < 11; $i++) {
         echo'<tr>';
-        for($j = 0; $j < 10; $j++)
+        for($j = 0; $j < 11; $j++)
         {
             $s=$j*$i;
             echo '<td>';
