@@ -31,7 +31,7 @@ if ($age >= 18 && $age <= 65){
  echo "Вам еще работать и работать";
 } elseif ($age > 65) {
     echo "Вам пора на пенсию";
-}elseif ($age >= 1 && $age <= 17){
+} elseif ($age >= 1 && $age <= 17){
  echo "Вам еще рано работать" ;
 } else {
     echo "Неизвестное число";
@@ -40,7 +40,21 @@ if ($age >= 18 && $age <= 65){
 echo "\n<- End task 3";
 
 echo "\ntask 4 ->\n";
-
-
+$day = mt_rand(1, 10);
+switch ($day) {
+    case 0:
+    case 1:
+    case 2:
+    case 4:
+    case 5:
+         echo "Это рабочий день";
+         break;
+    case 6:
+    case 7:
+        echo "Это выходной день";
+        break;
+    default:
+        echo "Неизвестный день";
+}
 
 echo "\n<- End task 4";
