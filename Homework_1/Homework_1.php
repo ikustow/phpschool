@@ -11,7 +11,7 @@ echo "<br>";
 echo "\"Мне $age лет\"";
 echo "<br>";
 echo "<br>";
-echo  "“!|\/’”\\";
+echo "“!|\/’”\\";
 echo "<br>";
 echo "<br>";
 echo "\n<- End task 1";
@@ -40,15 +40,15 @@ echo "<br>";
 $age = mt_rand(1, 99);
 //echo $age;
 
-if ($age >= 18 && $age <= 65){
+if ( $age >= 18 && $age <= 65 ) {
     echo "<br>";
     echo "Вам еще работать и работать";
-} elseif ($age > 65) {
+} elseif ( $age > 65 ) {
     echo "<br>";
     echo "Вам пора на пенсию";
-} elseif ($age >= 1 && $age <= 17){
+} elseif ( $age >= 1 && $age <= 17 ) {
     echo "<br>";
- echo "Вам еще рано работать" ;
+    echo "Вам еще рано работать";
 } else {
     echo "<br>";
     echo "Неизвестное число";
@@ -69,12 +69,12 @@ switch ($day) {
     case 2:
     case 4:
     case 5:
-    echo "<br>";
+        echo "<br>";
         echo "Это рабочий день";
         break;
     case 6:
     case 7:
-    echo "<br>";
+        echo "<br>";
         echo "Это выходной день";
         break;
     default:
@@ -92,20 +92,20 @@ echo "<br>";
 $bmw = array(
     "model" => "x5",
     "speed" => "120",
-    "doors"=> "5",
-    "year"  => "2015",
+    "doors" => "5",
+    "year" => "2015",
 );
 $toyota = array(
     "model" => "Camry",
     "speed" => "180",
     "doors" => "5",
-    "year"  => "2017",
+    "year" => "2017",
 );
 $opel = array(
     "model" => "Astra",
     "speed" => "150",
     "doors" => "3",
-    "year"  => "2010",
+    "year" => "2010",
 );
 
 $cars["bmw"] = $bmw;
@@ -114,7 +114,7 @@ $cars["opel"] = $opel;
 
 echo "<br>";
 //print_r ($cars);
-foreach($cars  as $key => $value) {
+foreach ($cars as $key => $value) {
     echo "<br>";
     echo " CAR $key ";
     echo "<br>";
