@@ -2,28 +2,30 @@
 <body>
 <table cellpadding="5" border="1">
     <?php
-    for ($i = 0; $i < 11; $i++) {
+    for ($row = 0; $row < 11; $row++) {
         echo '<tr>';
-        for ($j = 0; $j < 11; $j++) {
-            $s = $j * $i;
+        for ($col = 0; $col < 11; $col++) {
+            $s = $col * $row;
             echo '<td>';
-            if ( $i == 0 && $j == 0 ) {
+            if ($row == 0 && $col == 0) {
                 echo 'X';
                 continue;
             }
-            if ( $i == 0 ) {
-                echo $j;
+            if ($row == 0) {
+                echo $col;
                 continue;
             }
-            if ( $j == 0 ) {
-                echo $i;
+            if ($col == 0) {
+                echo $row;
                 continue;
             }
-            if ( ($i) % 2 == 0 && ($j) % 2 == 0 ) {
+            if (($row) % 2 == 0 && ($col) % 2 == 0) {
                 print "($s)"; //здесь круглые скобки
-            } elseif ( ($i) % 2 != 0 && ($j) % 2 != 0 ) {
+            } elseif (($row) % 2 == 0 || ($col) % 2 == 0) {
+                print "$s";
+            } else {
                 print "[$s]";
-            } else print "$s";
+            }
         }
     }
     ?>

@@ -114,11 +114,11 @@ $cars["opel"] = $opel;
 
 echo "<br>";
 //print_r ($cars);
-foreach ($cars as $key => $value) {
+foreach ($cars as $key => $car) {
     echo "<br>";
     echo " CAR $key ";
     echo "<br>";
-    echo "$value[model] $value[speed] $value[doors] $value[year] ";
+    echo "$car[model] $car[speed] $car[doors] $car[year] ";
     echo "<br>";
 }
 echo "<br>";
