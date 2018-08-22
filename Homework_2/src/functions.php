@@ -22,29 +22,33 @@ function task2($oper, $int1, $int2, $int3, $int4)
 
 function task3($tablerow, $tablecol)
 {
-    "<table cellpadding=\"5\" border=\"1\">";
-    for ($row = 0; $row < $tablerow; $row++) {
-        echo "<tr>";
-        for ($col = 0; $col < $tablecol; $col++) {
-            $s = $col * $row;
-            echo "<td>";
-            if ($row==0&&$col==0) {
-                echo 'X';
-                continue;
+    if ((is_integer($tablerow)&&$tablerow>0)&&(is_integer($tablecol)&&$tablecol>0)) {
+        echo "<table cellpadding=\"5\" border=\"1\">";
+        for ($row = 0; $row <= $tablerow; $row++) {
+            echo "<tr>";
+            for ($col = 0; $col <= $tablecol; $col++) {
+                $s = $col * $row;
+                echo "<td>";
+                if ($row == 0&&$col==0) {
+                    echo 'X';
+                    continue;
+                }
+                if ($row==0) {
+                    echo $col;
+                    continue;
+                }
+                if ($col==0) {
+                    echo $row;
+                    continue;
+                }
+                echo "$s";
             }
-            if ($row==0) {
-                echo $col;
-                continue;
-            }
-            if ($col== 0) {
-                echo $row;
-                continue;
-            }
-            echo "$s";
         }
+        echo "</tr></table><br/>";
+    } else {
+        echo 'Ошибка, числа не целые';
     }
 }
-"</table>";
 
 function task4_1()
 {
