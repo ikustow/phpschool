@@ -68,3 +68,9 @@ function task5_2($string_f4)
     $replacestring = str_replace("Две", "Три", $string_f4);
     return $replacestring;
 }
+
+function task6($file)
+{
+    $filetext = file_get_contents($file);
+    echo $filetext;
+}
