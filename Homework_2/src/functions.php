@@ -12,27 +12,29 @@ function task1($string_array, $allstring = null)
     }
 }
 
-function task2($oper, $args)
+function task2()
 {
     $mix_string = 0;
     $result = 0;
     $oper = func_get_arg(0);
-    foreach ($args as $arg) {
-        $mix_string = $mix_string.$oper.$arg;
+    $numargs = func_num_args();
+    $arg_list = func_get_args();
+    for ($i = 1; $i < $numargs; $i++) {
+        $mix_string = $mix_string.$oper.$arg_list[$i];
         if ($oper=="+") {
-            $result += $arg;
+                $result += $arg_list[$i];
         } elseif ($oper=="-") {
-            $result -= $$arg;
+                $result -= $arg_list[$i];
         } elseif ($oper=="*") {
-            $result *= $$arg;
+                $result *= $arg_list[$i];
         } elseif ($oper=="/") {
-            $result /= $$arg;
+                $result /= $arg_list[$i];
         } elseif ($oper=="%") {
-            $result %= $arg;
+                $result %= $arg_list[$i];
         }
     }
     $mix_func_result = $mix_string."=".$result;
-        return $mix_func_result;
+    return $mix_func_result;
 }
 
 
@@ -94,3 +96,4 @@ function task6($file)
     $filetext = file_get_contents($file);
     echo $filetext;
 }
+
