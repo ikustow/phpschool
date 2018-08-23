@@ -14,12 +14,14 @@ function task1($string_array, $allstring = null)
 
 function task2()
 {
-    $mix_string = 0;
-    $result = 0;
-    $oper = func_get_arg(0);
+
+
     $numargs = func_num_args();
     $arg_list = func_get_args();
-    for ($i = 1; $i < $numargs; $i++) {
+    $oper = $arg_list[0];
+    $mix_string =  $arg_list[1];
+    $result = $arg_list[1];
+    for ($i = 2; $i < $numargs; $i++) {
         $mix_string = $mix_string.$oper.$arg_list[$i];
         if ($oper=="+") {
                 $result += $arg_list[$i];
