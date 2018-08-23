@@ -17,20 +17,32 @@ function task2()
     $arg_list = func_get_args();
     $oper = array_shift($arg_list);
     $mix_string = implode($oper, $arg_list);
-    $result = 0;
-    for ($i = 1, $count = count($arg_list); $i < $count; ++$i) {
-        if ($oper == "+") {
+
+    if ($oper == "+") {
+        $result = 0;
+        for ($i = 0, $count = count($arg_list); $i < $count; ++$i) {
             $result += $arg_list[$i];
-        } elseif ($oper == "-") {
+        }
+    } elseif ($oper == "-") {
+        $result = 0;
+        for ($i = 0, $count = count($arg_list); $i < $count; ++$i) {
             $result -= $arg_list[$i];
-        } elseif ($oper == "*") {
+        }
+    } elseif ($oper == "*") {
+        $result = 1;
+        for ($i = 0, $count = count($arg_list); $i < $count; ++$i) {
             $result *= $arg_list[$i];
-        } elseif ($oper == "/") {
+        }
+    } elseif ($oper == "/") {
+        $result = $arg_list[0];
+        for ($i = 1, $count = count($arg_list); $i < $count; ++$i) {
             $result /= $arg_list[$i];
-        } elseif ($oper=="%") {
+        }
+    } elseif ($oper == "%") {
+        $result = $arg_list[0];
+        for ($i = 1, $count = count($arg_list); $i < $count; ++$i) {
             $result %= $arg_list[$i];
         }
-
     }
     $mix_func_result = $mix_string."=".$result;
     return $mix_func_result;
