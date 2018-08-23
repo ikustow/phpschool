@@ -16,7 +16,7 @@ echo "=====Function 2=====".PHP_EOL;
 
 echo "<br>";
 //$args = array("+",1, 2, 4, 5.6);
-$mix_func_result = task2("+", 1, 2, 4, 5.6);
+$mix_func_result = task2("-", 1, 2, 4, 5.6);
 echo $mix_func_result;
 echo "<br>";
 

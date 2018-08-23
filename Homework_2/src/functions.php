@@ -19,20 +19,14 @@ function task2()
     $mix_string = implode($oper, $arg_list);
 
     if ($oper == "+") {
-        $result = 0;
-        for ($i = 0, $count = count($arg_list); $i < $count; ++$i) {
-            $result += $arg_list[$i];
-        }
+        $result = array_sum($arg_list);
     } elseif ($oper == "-") {
         $result = 0;
         for ($i = 0, $count = count($arg_list); $i < $count; ++$i) {
             $result -= $arg_list[$i];
         }
     } elseif ($oper == "*") {
-        $result = 1;
-        for ($i = 0, $count = count($arg_list); $i < $count; ++$i) {
-            $result *= $arg_list[$i];
-        }
+            $result = array_product($arg_list);
     } elseif ($oper == "/") {
         $result = $arg_list[0];
         for ($i = 1, $count = count($arg_list); $i < $count; ++$i) {
