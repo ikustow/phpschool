@@ -14,9 +14,27 @@ function task1($string_array, $allstring = null)
 
 function task2($oper, $int1, $int2, $int3, $int4)
 {
-    $sum = $int1 + $int2 + $int3 + $int4;
-    $mix_func_result = $int1 . $oper . $int2 . $oper . $int3 . $oper . $int4 . "=" . $sum;
-    return $mix_func_result;
+    $mix_string = 0;
+    $result = 0;
+    $oper = func_get_arg(0);
+    $numargs = func_num_args();
+    $arg_list = func_get_args();
+    for ($i = 1; $i < $numargs; $i++) {
+        $mix_string = $mix_string.$oper.$arg_list[$i];
+        if ($oper=="+") {
+            $result += $arg_list[$i];
+        } elseif ($oper=="-") {
+            $result -= $arg_list[$i];
+        } elseif ($oper=="*") {
+            $result *= $arg_list[$i];
+        } elseif ($oper=="/") {
+            $result /= $arg_list[$i];
+        } elseif ($oper=="%") {
+            $result %= $arg_list[$i];
+        }
+    }
+    $mix_func_result = $mix_string."=" .$result;
+        return $mix_func_result;
 }
 
 
