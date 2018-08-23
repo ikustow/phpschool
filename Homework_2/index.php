@@ -15,7 +15,8 @@ echo "<br>";
 echo "=====Function 2=====".PHP_EOL;
 
 echo "<br>";
-$mix_func_result = task2("+", 1, 2, 4, 5.6);
+$args = array(1, 2, 4, 5.6,);
+$mix_func_result = task2("+", $args);
 echo $mix_func_result;
 echo "<br>";
 
