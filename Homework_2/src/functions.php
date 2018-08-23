@@ -17,7 +17,6 @@ function task2()
     $arg_list = func_get_args();
     $oper = array_shift($arg_list);
     $mix_string =  implode($oper, $arg_list);
-    $result = 0;
     if ($oper=="+") {
                 $result = array_sum($arg_list);
     } elseif ($oper=="-") {
