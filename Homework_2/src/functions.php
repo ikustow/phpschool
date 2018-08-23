@@ -14,30 +14,20 @@ function task1($string_array, $allstring = null)
 
 function task2()
 {
-
-
-    $numargs = func_num_args();
     $arg_list = func_get_args();
-    $oper = $arg_list[0];
-    $mix_string =  $arg_list[1];
-    $result = $arg_list[1];
-    for ($i = 2; $i < $numargs; $i++) {
-        $mix_string = $mix_string.$oper.$arg_list[$i];
-        if ($oper=="+") {
-                $result += $arg_list[$i];
-        } elseif ($oper=="-") {
-                $result -= $arg_list[$i];
-        } elseif ($oper=="*") {
-                $result *= $arg_list[$i];
-        } elseif ($oper=="/") {
-                $result /= $arg_list[$i];
-        } elseif ($oper=="%") {
-                $result %= $arg_list[$i];
-        }
+    $oper = array_shift($arg_list);
+    $mix_string =  implode($oper, $arg_list);
+    $result = 0;
+    if ($oper=="+") {
+                $result = array_sum($arg_list);
+    } elseif ($oper=="-") {
+               $result = array_diff($arg_list);
     }
     $mix_func_result = $mix_string."=".$result;
     return $mix_func_result;
 }
+
+
 
 
 function task3($tablerow, $tablecol)
