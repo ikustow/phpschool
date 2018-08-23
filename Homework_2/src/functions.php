@@ -33,7 +33,7 @@ function task2($oper, $int1, $int2, $int3, $int4)
             $result %= $arg_list[$i];
         }
     }
-    $mix_func_result = $mix_string."=" .$result;
+    $mix_func_result = $mix_string."=".$result;
         return $mix_func_result;
 }
 
