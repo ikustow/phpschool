@@ -16,11 +16,21 @@ function task2()
 {
     $arg_list = func_get_args();
     $oper = array_shift($arg_list);
-    $mix_string =  implode($oper, $arg_list);
-    if ($oper=="+") {
-                $result = array_sum($arg_list);
-    } elseif ($oper=="-") {
-               $result = array_diff($arg_list);
+    $mix_string = implode($oper, $arg_list);
+    $result = 0;
+    for ($i = 1, $count = count($arg_list); $i < $count; ++$i) {
+        if ($oper == "+") {
+            $result += $arg_list[$i];
+        } elseif ($oper == "-") {
+            $result -= $arg_list[$i];
+        } elseif ($oper == "*") {
+            $result *= $arg_list[$i];
+        } elseif ($oper == "/") {
+            $result /= $arg_list[$i];
+        } elseif ($oper=="%") {
+            $result %= $arg_list[$i];
+        }
+
     }
     $mix_func_result = $mix_string."=".$result;
     return $mix_func_result;
