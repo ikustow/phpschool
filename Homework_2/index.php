@@ -47,14 +47,14 @@ $delsymbol = task5_1($string_f4);
 echo $delsymbol;
 echo "<br>";
 
-$string_f4 =  "Две бутылки лимонада";
-$replaceword = task5_2($string_f4);
+$string =  "Две бутылки лимонада";
+$replaceword = task5_2($string);
 echo $replaceword;
 echo "<br>";
 
 echo "=====Function 6=====".PHP_EOL;
 echo "<br>";
-$file = "test.txt";
+$file = "data.txt";
 
 if (!file_exists($file)) {
     $fp = fopen($file, "w");

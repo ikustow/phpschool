@@ -1,14 +1,14 @@
 <?php
-function task1($string_array, $allstring = null)
+function task1($string, $allstring = null)
 {
     if ($allstring == false) {
-        foreach ($string_array as &$value) {
-            echo "$value" . "<p>";
+        foreach ($string as &$string) {
+            echo "$string" . "<p>";
         }
     }
     if ($allstring == true) {
-        $string_array = implode(' ', $string_array);
-        return $string_array;
+        $string = implode(' ', $string);
+        return $string;
     }
 }
 
@@ -17,7 +17,7 @@ function task2()
     $arg_list = func_get_args();
     $oper = array_shift($arg_list);
     $mix_string = implode($oper, $arg_list);
-    $result= eval("return $mix_string;");
+    $result = eval("return $mix_string;");
     $mix_func_result = $mix_string."=".$result;
     return $mix_func_result;
 }
@@ -72,9 +72,9 @@ function task5_1($string_f4)
     $delstring = str_replace("К", "", $string_f4);
     return $delstring;
 }
-function task5_2($string_f4)
+function task5_2($string)
 {
-    $replacestring = str_replace("Две", "Три", $string_f4);
+    $replacestring = str_replace("Две", "Три", $string);
     return $replacestring;
 }
 
