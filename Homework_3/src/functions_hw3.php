@@ -12,28 +12,15 @@ function task1_hw3 ()
 function task2_hw3 ()
 {
     $array = array(1, 2, 4, 5, 6, 7);
-    $datajson = json_encode($array);
-    $file = "output.json";
+    $file = __DIR__ . '/output.json';
 
-    if (!file_exists($file)) {
-        $fp = fopen($file, "w");
-        fwrite($fp, $datajson);
-        fclose($fp);
-    }
-    $fp = fopen($file, "w");
-    $outputarray = json_decode($file);
-    $random = array_rand($outputarray);
-    $outputarray[$random] = mt_rand(9, 100);
-    $file2 = "input.json";
-    $randomdatajson = json_encode($outputarray);
-    if (!file_exists($file2)) {
-        $fp2 = fopen($file2, "w");
-        fwrite($file2, $randomdatajson);
-        fclose($fp2);
-    }
-    $inputarray = son_decode($file2);
-    $result = array_diff_assoc($outputarray, $inputarray);
-    print_r($result);
+    file_put_contents($file, json_encode($array));
+    //$outputarray = json_decode($file);
+    //$random = array_rand($outputarray);
+    //$outputarray[$random] = mt_rand(9, 100);
+   // $file2 = "input.json";
+   // $randomdatajson = json_encode($outputarray);
+   // $inputarray = json_decode($file2);
+   // $result = array_diff_assoc($outputarray, $inputarray);
+   // print_r($result);
 }
-
-
