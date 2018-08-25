@@ -1,15 +1,16 @@
 <?php
 
-function task1_hw3 ()
+function task1_hw3()
 {
-    $file = file_get_contents(__DIR__ . '/data.xml');
-    $xml = new SimpleXMLElement($file);
+    $file = __DIR__ . '/data.xml';
+    $fileXML = file_get_contents($file);
+    $xml = new SimpleXMLElement($fileXML);
     //print ($xml->to->attributes()->data->__toString()).PHP_EOL;
-    print ($xml->PurchaseOrder->__toString()).PHP_EOL;
+    print ($xml->PurchaseOrder->attributes()->PurchaseOrderNumber->__toString()).PHP_EOL;
 
 }
 
-function task2_hw3 ()
+function task2_hw3()
 {
     $array = array(1, 2, 4, 5, 6, 7);
     $file = __DIR__ . '/output.json';
