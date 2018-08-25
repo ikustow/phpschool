@@ -15,12 +15,14 @@ function task2_hw3 ()
     $file = __DIR__ . '/output.json';
 
     file_put_contents($file, json_encode($array));
-    //$outputarray = json_decode($file);
-    //$random = array_rand($outputarray);
-    //$outputarray[$random] = mt_rand(9, 100);
-   // $file2 = "input.json";
-   // $randomdatajson = json_encode($outputarray);
-   // $inputarray = json_decode($file2);
-   // $result = array_diff_assoc($outputarray, $inputarray);
-   // print_r($result);
+    $outputarray = file_get_contents($file);
+    $outputarray = json_decode($outputarray);
+    $random = array_rand($outputarray);
+    $outputarray[$random] = mt_rand(9, 100);
+    $file2 =  __DIR__ . '/input.json';
+    $randomdatajson = file_put_contents($file2, json_encode($outputarray));
+    $inputarray = file_get_contents($file2);
+    $inputarray = json_decode($inputarray);
+    $result = array_diff($outputarray, $inputarray);
+    print_r($result);
 }
