@@ -53,10 +53,9 @@ function task3_hw3()
 
 function task4_hw3()
 {
-  $link = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
-  //$result = file_get_contents($link);
-    $result =  file_get_contents($link);
- // $tags = get_meta_tags($link);
-    echo "<br>";
-    print_r($result) ;
+    $link = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
+    $data = file_get_contents($link);
+    $object = json_decode($data);
+    $result = json_decode($data, true);
+    var_dump($object, $result);
 }
