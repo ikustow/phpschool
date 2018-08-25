@@ -6,7 +6,7 @@ function task1_hw3()
     $fileXML = file_get_contents($file);
     $xml = new SimpleXMLElement($fileXML);
     //print ($xml->to->attributes()->data->__toString()).PHP_EOL;
-    print ($xml->PurchaseOrder->attributes()->PurchaseOrderNumber->__toString()).PHP_EOL;
+    print ($xml->Address->attributes()->Type->__toString()).PHP_EOL;
 
 }
 
