@@ -66,6 +66,7 @@ function task2_hw3()
 
     echo "<br>";
     echo "<br>";
+
     $array = array(
         array(1, 2, 4, 5, 6, 7),
         array(4, 5, 7, 8, 9, 5));
@@ -75,24 +76,37 @@ function task2_hw3()
     $outputarray = json_decode($outputarray);
 
     $original_output = $outputarray;
+    //рандомно меняем число
+    $randomindex = mt_rand(0, 1);
+    $randomelement = array_rand($outputarray[$randomindex]);
+    $outputarray[$randomindex][$randomelement] = mt_rand(9, 100);
 
-    $randomindex =  mt_rand(0, 1);
-    $random_element = mt_rand(0, 6);
-    $random[$randomindex] = array_rand($outputarray[$random_element]);
-    $outputarray = mt_rand(9, 100);
-
-    $file2 =  __DIR__ . '/input.json';
-
-    $randomdatajson = file_put_contents($file2, json_encode($outputarray));
+    $file2 = __DIR__ . '/input.json';
+    file_put_contents($file2, json_encode($outputarray));
     $inputarray = file_get_contents($file2);
     $inputarray = json_decode($inputarray);
 
-    $result = array_diff($inputarray, $original_output);
-    echo "<br>";
-    echo 'Произошло следующее изменение в файле input.json';
-    echo "<br>";
-    print_r($result);
-    echo "<br>";
+    $level = count($array);
+    //ищем различия
+    for ($index = 0; $index < $level; $index++) {
+        $result = array_diff($inputarray[$index], $original_output[$index]);
+        if (empty($result)) {
+            //пустой
+        } else {
+            $keys = array_keys($result);
+            foreach ($keys as $key => $searchkey) {
+                $findkey = array_search($result[$searchkey], $result);
+                echo "<br>";
+                echo "Произошло следующее изменение в группе чисел номер " . ($index + 1) . " Файла input.json ";
+                echo " Раньше было " . $original_output[$index][$findkey] . ", а стало " . $inputarray[$index][$findkey];
+                echo "<br>";
+                // print_r($result = array_keys($result));
+                //print_r($key);
+                echo "<br>";
+            }
+
+        }
+    }
 }
 
 function task3_hw3()
