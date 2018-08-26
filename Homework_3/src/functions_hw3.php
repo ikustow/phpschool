@@ -64,9 +64,6 @@ function task1_hw3()
 function task2_hw3()
 {
     echo "=====Function 2=====";
-
-
-
     $array = array(
         array(1, 2, 4, 5, 6, 7),
         array(4, 5, 7, 8, 9, 5));
@@ -134,28 +131,13 @@ function task4_hw3()
     echo "<br>";
     $link = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
     $data = file_get_contents($link);
-    //$result = json_decode($data, true);
-    //echo "$result[pageid]";
-    //var_dump($result["pageid"]);
-
-
-    $curl = curl_init();
-
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_URL, $link);
-    $data = curl_exec($curl);
-    curl_close($curl);
-
-
-    $result = json_decode($data, true);
-
-    echo $result ["pageid"];
-    //var_dump($result);
-
     $result1 = json_decode(file_get_contents($link), true);
-    //var_dump($result1);
-   //$keys = array_keys($result1);
+    print_r("$result1[query]");
+    echo "$result1[query]";
+    foreach ($result1["query"] as $key => $searchkey) {
+        echo $searchkey;
+    }
+
 
 
 }
