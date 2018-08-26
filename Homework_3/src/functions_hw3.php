@@ -131,10 +131,7 @@ function task4_hw3()
     echo "<br>";
     $link = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
 // $data = file_get_contents($link);
-    $result1 = json_decode(file_get_contents($link), true);
-
-
-
+    $result = json_decode(file_get_contents($link), true);
     function searchkeys ($item, $key)
     {
         if ($key == "title") {
@@ -144,6 +141,6 @@ function task4_hw3()
             echo "Page id ".$item."<br>";
         }
     }
-    array_walk_recursive($result1, 'searchkeys');
+    array_walk_recursive($result, 'searchkeys');
 }
 
