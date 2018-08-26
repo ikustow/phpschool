@@ -117,7 +117,7 @@ function task3_hw3()
     $fp = fopen($csvfile, "w");
     fputcsv($fp, $random_array, ';');
     fclose($fp);
-    $csvdata = str_getcsv(file_get_contents($csvfile));
+    $csvdata = str_getcsv(file_get_contents($csvfile),';');
     $csvsum = array_sum($csvdata);
     echo "<br>";
     print_r($csvsum);
@@ -132,11 +132,10 @@ function task4_hw3()
     $link = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
     $data = file_get_contents($link);
     $result1 = json_decode(file_get_contents($link), true);
-    print_r("$result1[query]");
-    echo "$result1[query]";
-    foreach ($result1["query"] as $key => $searchkey) {
-        echo $searchkey;
-    }
+
+    echo $result1['query']["pageid"];
+
+
 
 
 
