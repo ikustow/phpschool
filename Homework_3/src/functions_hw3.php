@@ -2,17 +2,69 @@
 
 function task1_hw3()
 {
+    echo "=====Function 1=====";
+
+    echo "<br>";
     $file = __DIR__ . '/data.xml';
     $fileXML = file_get_contents($file);
     $xml = new SimpleXMLElement($fileXML);
-    //print ($xml->to->attributes()->data->__toString()).PHP_EOL;
+    //print ($xml->PurchaseOrder->attributes()->PurchaseOrderNumber);
+    echo "Order type: ";
     print ($xml->Address->attributes()->Type->__toString()).PHP_EOL;
     echo "<br>";
-
+    echo "<br>";
+    foreach ($xml->Address as $OrderAddress) {
+        echo $OrderAddress->attributes()->Type." address:";
+        echo "<br>";
+        echo "Name: ".PHP_EOL;
+        print $OrderAddress->Name;
+        echo "<br>";
+        echo "Address: ";
+        print $OrderAddress->City.",".$OrderAddress->Street." ".$OrderAddress->State.", ".$OrderAddress->Zip.", ".$OrderAddress->Country;
+        echo "<br>";
+        echo "<br>";
+    }
+    echo "Delivery Note: ";
+    print ($xml->DeliveryNotes->__toString()).PHP_EOL;
+    echo "<br>";
+    echo "<br>";
+    echo "Items:";
+    echo "<br>";
+    $itemnumber = 1;
+    foreach ($xml->Items->Item as $Items) {
+        echo "Item ".$itemnumber.":";
+        $itemnumber = $itemnumber+1;
+        echo "<br>";
+        echo "Part number: ".($Items->attributes()->PartNumber->__toString());
+        echo "<br>";
+        echo "Product Name: ".PHP_EOL;
+        print $Items->ProductName;
+        echo "<br>";
+        echo "Quantity: ".PHP_EOL;
+        print $Items->Quantity;
+        echo "<br>";
+        echo "USPrice: ".PHP_EOL;
+        print $Items->USPrice;
+        echo "<br>";
+        if (isset($Items->Comment)) {
+            echo "Comment: ".PHP_EOL;
+            print $Items->Comment;
+            echo "<br>";
+        }
+        if (isset($Items->ShipDate)) {
+            echo "Ship Date: ".PHP_EOL;
+            print $Items->ShipDate;
+            echo "<br>";
+        }
+        echo "<br>";
+    }
 }
 
 function task2_hw3()
 {
+    echo "=====Function 2=====";
+
+    echo "<br>";
     echo "<br>";
     $array = array(1, 2, 4, 5, 6, 7);
     $file = __DIR__ . '/output.json';
@@ -36,6 +88,9 @@ function task2_hw3()
 
 function task3_hw3()
 {
+    echo "=====Function 3=====";
+
+    echo "<br>";
     $random_array = array();
     for ($i = 0; $i <= 60; $i++) {
         $random_array[$i] = rand(0, 100);
@@ -53,6 +108,10 @@ function task3_hw3()
 
 function task4_hw3()
 {
+    echo "=====Function 4=====";
+
+    echo "<br>";
+
     $link = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
     $data = file_get_contents($link);
     $object = json_decode($data);
