@@ -3,16 +3,19 @@
 function task1_hw3()
 {
     echo "=====Function 1=====";
-
     echo "<br>";
+
     $file = __DIR__ . '/data.xml';
     $fileXML = file_get_contents($file);
     $xml = new SimpleXMLElement($fileXML);
-    //print ($xml->PurchaseOrder->attributes()->PurchaseOrderNumber);
+
+    echo "PURCHASE ORDER";
+    echo "<br>"."<br>";
+    print "Purchase Order Number: ".($xml->attributes()->PurchaseOrderNumber)." Date: ".($xml->attributes()->OrderDate);
+    echo "<br>";
     echo "Order type: ";
     print ($xml->Address->attributes()->Type->__toString()).PHP_EOL;
-    echo "<br>";
-    echo "<br>";
+    echo "<br>"."<br>";
     foreach ($xml->Address as $OrderAddress) {
         echo $OrderAddress->attributes()->Type." address:";
         echo "<br>";
@@ -21,13 +24,11 @@ function task1_hw3()
         echo "<br>";
         echo "Address: ";
         print $OrderAddress->City.",".$OrderAddress->Street." ".$OrderAddress->State.", ".$OrderAddress->Zip.", ".$OrderAddress->Country;
-        echo "<br>";
-        echo "<br>";
+        echo "<br>"."<br>";
     }
     echo "Delivery Note: ";
     print ($xml->DeliveryNotes->__toString()).PHP_EOL;
-    echo "<br>";
-    echo "<br>";
+    echo "<br>"."<br>";
     echo "Items:";
     echo "<br>";
     $itemnumber = 1;
@@ -64,8 +65,7 @@ function task2_hw3()
 {
     echo "=====Function 2=====";
 
-    echo "<br>";
-    echo "<br>";
+
 
     $array = array(
         array(1, 2, 4, 5, 6, 7),
@@ -93,15 +93,13 @@ function task2_hw3()
         if (empty($result)) {
             //пустой
         } else {
+            echo "<br>";
+            echo "Произошло следующее изменение в группе чисел номер " . ($index + 1) . " файла input.json. ";
             $keys = array_keys($result);
             foreach ($keys as $key => $searchkey) {
                 $findkey = array_search($result[$searchkey], $result);
                 echo "<br>";
-                echo "Произошло следующее изменение в группе чисел номер " . ($index + 1) . " Файла input.json ";
                 echo " Раньше было " . $original_output[$index][$findkey] . ", а стало " . $inputarray[$index][$findkey];
-                echo "<br>";
-                // print_r($result = array_keys($result));
-                //print_r($key);
                 echo "<br>";
             }
 
@@ -134,11 +132,30 @@ function task4_hw3()
     echo "=====Function 4=====";
 
     echo "<br>";
-
     $link = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
     $data = file_get_contents($link);
-   // $object = json_decode($data);
+    //$result = json_decode($data, true);
+    //echo "$result[pageid]";
+    //var_dump($result["pageid"]);
+
+
+    $curl = curl_init();
+
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_URL, $link);
+    $data = curl_exec($curl);
+    curl_close($curl);
+
+
     $result = json_decode($data, true);
-    echo "$result[pageid]";
-    var_dump($object, $result);
+
+    echo $result ["pageid"];
+    //var_dump($result);
+
+    $result1 = json_decode(file_get_contents($link), true);
+    //var_dump($result1);
+   //$keys = array_keys($result1);
+
+
 }
