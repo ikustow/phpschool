@@ -66,18 +66,27 @@ function task2_hw3()
 
     echo "<br>";
     echo "<br>";
-    $array = array(1, 2, 4, 5, 6, 7);
+    $array = array(
+        array(1, 2, 4, 5, 6, 7),
+        array(4, 5, 7, 8, 9, 5));
     $file = __DIR__ . '/output.json';
     file_put_contents($file, json_encode($array));
     $outputarray = file_get_contents($file);
     $outputarray = json_decode($outputarray);
+
     $original_output = $outputarray;
-    $random = array_rand($outputarray);
-    $outputarray[$random] = mt_rand(9, 100);
+
+    $randomindex =  mt_rand(0, 1);
+    $random_element = mt_rand(0, 6);
+    $random[$randomindex] = array_rand($outputarray[$random_element]);
+    $outputarray = mt_rand(9, 100);
+
     $file2 =  __DIR__ . '/input.json';
+
     $randomdatajson = file_put_contents($file2, json_encode($outputarray));
     $inputarray = file_get_contents($file2);
     $inputarray = json_decode($inputarray);
+
     $result = array_diff($inputarray, $original_output);
     echo "<br>";
     echo 'Произошло следующее изменение в файле input.json';
@@ -95,14 +104,14 @@ function task3_hw3()
     for ($i = 0; $i <= 60; $i++) {
         $random_array[$i] = rand(0, 100);
     }
-    $csvfile =  __DIR__ . '/numbers.csv';
+    $csvfile= __DIR__.'/numbers.csv';
     $fp = fopen($csvfile, "w");
     fputcsv($fp, $random_array, ';');
     fclose($fp);
-    $csv = str_getcsv(file_get_contents($csvfile));
-    $csv = array_sum($csv);
+    $csvdata = str_getcsv(file_get_contents($csvfile));
+    $csvsum = array_sum($csvdata);
     echo "<br>";
-    print_r($csv);
+    print_r($csvsum);
     echo "<br>";
 }
 
@@ -114,7 +123,8 @@ function task4_hw3()
 
     $link = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
     $data = file_get_contents($link);
-    $object = json_decode($data);
+   // $object = json_decode($data);
     $result = json_decode($data, true);
+    echo "$result[pageid]";
     var_dump($object, $result);
 }
