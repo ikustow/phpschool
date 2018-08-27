@@ -22,58 +22,32 @@ $db_table = "Users";
 $mysqli = new mysqli($host, $user, $pass, $db_name);
 
 // Ищем по почте
-$result = $mysqli->query("SELECT client,email,orders,phone,address FROM  Users  WHERE email = '$email'");
+$result = $mysqli->query("SELECT ID,client,email,orders,phone,address FROM  Users  WHERE email = '$email'");
 $result = $result->fetch_assoc();
-if (empty($result)) {
+if ( empty($result) ) {
     $result = $mysqli->query("INSERT INTO Users (client,email,orders,phone,address) VALUES ('$name','$email',1,'$phone','$address')");
     $firstvisit = true;
     createorder($result);
     sendemail();
 } else {
+    $clientID = $result['ID'];
+    $orders = $result['orders'] + 1;
+    $mysqli->query("UPDATE Users SET orders ='$orders' WHERE ID = '$clientID'");
 
-    function UseMySQLData($item, $key)
-    {
-        if ($key == "ID") {
-            $clientID = $item;
-        }
-        if ($key == "orders") {
-            $orders = $item+1;
-        }
-        if (empty($orders) && (empty($clientID))) {
-            $host = "localhost";
-            $user = "root";
-            $pass = ""; //установленный вами пароль
-            $db_name = "burgershop";
-            $mysqli = new mysqli($host, $user, $pass, $db_name);
-            $mysqli->query("UPDATE Users SET orders='$orders' WHERE id= $clientID");
-        }
-    }
-    array_walk_recursive($result, 'UseMySQLData');
     createorder($result);
 }
 function createorder($result)
 {
-    array_walk_recursive($result, 'UseMySQLDataForOrders');
-    function UseMySQLDataForOrders($item, $key)
-    {
-        if ($key == "ID") {
-            $orderclientID = $item;
-        }
-        if ($key == "client") {
-            $orderclientname = $item;
-        }
-        if ($key == "email") {
-            $orderclientemail = $item;
-        }
-        if (empty($orderclientID) && (empty($orderclientname)) && (empty($orderclientemail))) {
-            $host = "localhost";
-            $user = "root";
-            $pass = ""; //установленный вами пароль
-            $db_name = "burgershop";
-            $mysqli = new mysqli($host, $user, $pass, $db_name);
-            $mysqli->query("INSERT INTO Orders (clientID,clientEmail,clientName) VALUES ('$orderclientID','$orderclientemail','$orderclientname')");
-        }
-    }
+    $host = "localhost";
+    $user = "root";
+    $pass = ""; //установленный вами пароль
+    $db_name = "burgershop";
+    $db_table = "Users";
+    $mysqli = new mysqli($host, $user, $pass, $db_name);
+    $orderclientID = $result['ID'];
+    $orderclientname = $result['client'];
+    $orderclientemail = $result['email'];
+    $mysqli->query("INSERT INTO Orders (clientID,clientEmail,clientName) VALUES ('$orderclientID','$orderclientemail','$orderclientname')");
 }
 
 function sendemail()
