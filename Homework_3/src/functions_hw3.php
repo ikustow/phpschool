@@ -132,6 +132,7 @@ function task4_hw3()
     $link = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
 // $data = file_get_contents($link);
     $result = json_decode(file_get_contents($link), true);
+
     function searchkeys ($item, $key)
     {
         if ($key == "title") {
