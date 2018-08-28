@@ -69,6 +69,7 @@ function sendemail($clientinfo, $orderid)
   <title>Заказ номер'.$orderid.'</title>
 </head>
 <body>
+  <p>Заказ номер '.$orderid.'</p>
   <p>Ваш заказ будет доставлен по адресу:</p>
   <p>'.$address.'</p>
   <p>Заказ - DarkBeefBurger за 500 рублей, 1 шт</p>
@@ -80,10 +81,11 @@ function sendemail($clientinfo, $orderid)
         $message = '
 <html>
 <head>
-  <title>Заказ номер'.$orderid.'</title>
+  <title>Заказ номер '.$orderid.'</title>
 </head>
 <body>
-  <p>Ваш заказ будет доставлен по адресу:”</p>
+  <p>Заказ номер '.$orderid.'</p>
+  <p>Ваш заказ будет доставлен по адресу:</p>
   <p>'.$address.'</p>
   <p>Заказ - DarkBeefBurger за 500 рублей, 1 шт</p>
   <p>Спасибо! Это ваш первый заказ!</p>  
@@ -92,11 +94,14 @@ function sendemail($clientinfo, $orderid)
 ';
     }
 
-   // $headers = 'MIME-Version: 1.0' . "\r\n";
-  //  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    //$headers[] = 'To'.$to;
+    //$headers[] = 'From: Burgers.ru';
 // Отправляем
     //echo $to;
     //print_r($message);
-    mail($to, $subject, $message);
+    mail($to, $subject, $message,$headers);
     echo "Ваш заказ оформлен! На указанный e-mail: ".$to." отправлено письмо";
 }
