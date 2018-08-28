@@ -1,5 +1,5 @@
 <?php
-require("/SQLconnect.php");
+require(__DIR__.'\SQLconnect.php');
 function autorization($formdataarray)
 {
     $mysqli = connect();
@@ -26,15 +26,17 @@ function autorization($formdataarray)
     }
 }
 
-function createorder($result, $orderid)
+function createorder_and_sendemail($userdata, $orderdata, $orderid)
 {
-    $orderclientID = $result['ID'];
-    $orderclientname = $result['client'];
-    $orderclientemail = $result['email'];
-    $comment = $result['comment'];
-    $payment = $result['payment'];
-    $callback = $result['callback'];
-    $address = $result['street'].", д.".$result['home'].", кор.".$result['part'].", кв.".$result['appt'].", эт.".$result['floor'];
+    //print_r($userdata);
+    $orderclientID = $userdata['ID'];
+    $orderclientname = $userdata['client'];
+    $orderclientemail = $userdata['email'];
+    $comment = $orderdata['comment'];
+    $payment = $orderdata['payment'];
+    $callback = $orderdata['callback'];
+    $address = $orderdata['address'];
+    $orderscount = $userdata['orders'];
 
     $mysqli = connect();
 
@@ -42,17 +44,17 @@ function createorder($result, $orderid)
 
     $orderid = mysqli_insert_id($mysqli);
 
-    sendemail($result, $orderid);
+    sendemail($orderclientemail, $orderscount, $orderdata, $orderid);
 }
 
-function sendemail($clientinfo, $orderid)
+function sendemail($orderclientemail, $orderscount, $clientinfo, $orderid)
 {
-    $to = $clientinfo['email'];
+    $to = $orderclientemail;
     $subject = 'Заказ с сайта burgers.ru';
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-    $orderscount = $clientinfo['orders']++;
+    $orderscount = $orderscount++;
 
     $message = generatemessage($clientinfo, $orderid, $orderscount);
 

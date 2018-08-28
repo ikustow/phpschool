@@ -1,6 +1,6 @@
 <?php
 //Запишем данные формы в переменные
-require("/function.php");
+require(__DIR__.'\function.php');
 $name = $_POST['name'];
 if (empty($name)) {
     $name = "Клиент";
@@ -16,18 +16,21 @@ $comment = $_POST['comment'];
 $payment = $_POST['payment'];
 $callback = $_POST['callback'];
 
-$formdataarray = array([
+$formdataarray = array(
     "name" => $name,
     "phone" => $phone,
-    "email" => $email,
-    "address" => $address,
+    "email" => $email
+);
+$orderdata = array(
     "comment" => $comment,
     "payment" => $payment,
-    "callback" => $callback
-]);
+    "callback" => $callback,
+    "address" => $address
+);
 
 $userdata = autorization($formdataarray);
 
+
 $orderid = 0;
 
-createorder_and_sendemail($userdata, $orderid);
+createorder_and_sendemail($userdata, $orderdata, $orderid);
