@@ -61,7 +61,7 @@ function sendemail($clientinfo, $orderid)
     $address = $_POST['street'] . ", д." . $_POST['home'] . ", кор." . $_POST['part'] . ", кв." . $_POST['appt'] . ", эт." . $_POST['floor'];
 // тема письма
     $subject = 'Заказ с сайта burgers.ru';
-    $orderscount = $clientinfo['orders'];
+    $orderscount = $clientinfo['orders']+1;//костыль
 // текст письма
     if ($orderscount > 1) {
         $message = '<html>
