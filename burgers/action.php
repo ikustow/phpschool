@@ -50,7 +50,11 @@ function createorder($result)
     $orderclientID = $result['ID'];
     $orderclientname = $result['client'];
     $orderclientemail = $result['email'];
-    $mysqli->query("INSERT INTO Orders (clientID,clientEmail,clientName) VALUES ('$orderclientID','$orderclientemail','$orderclientname')");
+    $comment = $_POST['comment'];
+    $payment = $_POST['payment'];
+    $callback = $_POST['callback'];
+    $address = $_POST['street'].", д.".$_POST['home'].", кор.".$_POST['part'].", кв.".$_POST['appt'].", эт.".$_POST['floor'];
+    $mysqli->query("INSERT INTO Orders (clientID,clientEmail,clientName,сomment,paymant,address,callback) VALUES ('$orderclientID','$orderclientemail','$orderclientname','$comment','$payment','$address','$callback')");
     $neworderid = mysqli_insert_id($mysqli);
     sendemail($result,$neworderid);
 }
@@ -79,7 +83,6 @@ function sendemail($clientinfo, $orderid)
 </html>
 ';
     } else {
-
         $message = '
 <html>
 <head>
@@ -95,15 +98,9 @@ function sendemail($clientinfo, $orderid)
 </html>
 ';
     }
-
-
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    //$headers[] = 'To'.$to;
-    //$headers[] = 'From: Burgers.ru';
-// Отправляем
-    //echo $to;
-    //print_r($message);
-    mail($to, $subject, $message,$headers);
+
+    mail($to, $subject, $message, $headers);
     echo "Ваш заказ оформлен! На указанный e-mail: ".$to." отправлено письмо";
 }
