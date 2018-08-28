@@ -87,9 +87,7 @@ function task2_hw3()
     //ищем различия
     for ($index = 0; $index < $level; $index++) {
         $result = array_diff($inputarray[$index], $original_output[$index]);
-        if (empty($result)) {
-            //пустой
-        } else {
+        if (!empty($result))  {
             echo "<br>";
             echo "Произошло следующее изменение в группе чисел номер " . ($index + 1) . " файла input.json. ";
             $keys = array_keys($result);
