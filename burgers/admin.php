@@ -27,12 +27,13 @@ echo "<br>"."<br>";
 echo "Данные заказов:";
 echo "<br>"."<br>";
 echo "<table width='50%' border='1'>";
-echo "<tr><td>ID заказа</td><td>ID клиента</td><td>Клиент</td><td>E-mail</td></tr>";
+echo "<tr><td>ID заказа</td><td>ID клиента</td><td>Клиент</td><td>E-mail</td><td>Адрес</td></tr>";
 while ($myrow = $result->fetch_assoc()) {
     $orderID = $myrow['orderID'];
     $clientID=$myrow['clientID'];
     $clientName=$myrow['clientName'];
     $clientEmail=$myrow['clientEmail'];
-    echo "<tr><td>$orderID</td><td>$clientID</td><td>$clientName</td><td>$clientEmail</td></tr>";
+    $clientAdd=$myrow['address'];
+    echo "<tr><td>$orderID</td><td>$clientID</td><td>$clientName</td><td>$clientEmail</td><td>$clientAdd</td></tr>";
 }
 echo "</table>";
