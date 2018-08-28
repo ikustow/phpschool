@@ -54,7 +54,7 @@ function sendemail($orderclientemail, $orderscount, $clientinfo, $orderid)
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-    $orderscount = $orderscount++;
+    $orderscount = $orderscount+1;
 
     $message = generatemessage($clientinfo, $orderid, $orderscount);
 
@@ -69,7 +69,6 @@ function sendemail($orderclientemail, $orderscount, $clientinfo, $orderid)
 
 function generatemessage($clientinfo, $orderid, $orderscount)
 {
-
     if ($orderscount > 1) {
         $endrow = 'Спасибо! Это уже ' . $orderscount . ' заказ!';
     } else {
