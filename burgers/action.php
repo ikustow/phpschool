@@ -29,8 +29,5 @@ $orderdata = array(
 );
 
 $userdata = autorization($formdataarray);
-
-
 $orderid = 0;
-
 createorder_and_sendemail($userdata, $orderdata, $orderid);

@@ -20,7 +20,6 @@ while ($myrow = $result->fetch_assoc()) {
 }
 echo "</table>";
 
-
 $result = $mysqli->query("SELECT * FROM  Orders ");
 
 echo "<br>"."<br>";

@@ -65,28 +65,17 @@ function sendemail($orderclientemail, $orderscount, $clientinfo, $orderid)
     } else {
         echo "Произошла ошибка отправки";
     }
-
 }
 
 function generatemessage($clientinfo, $orderid, $orderscount)
 {
-    if ($orderscount>1) {
-        $message = '<html>
-<head>
-  <title>Заказ номер'.$orderid.'</title>
-</head>
-<body>
-  <p>Заказ номер '.$orderid.'</p>
-  <p>Ваш заказ будет доставлен по адресу:</p>
-  <p>'.$clientinfo['address'].'</p>
-  <p>Заказ - DarkBeefBurger за 500 рублей, 1 шт</p>
-  <p>Спасибо! Это уже '.$orderscount.' заказ!</p>  
-</body>
-</html>
-';
+
+    if ($orderscount > 1) {
+        $endrow = 'Спасибо! Это уже ' . $orderscount . ' заказ!';
     } else {
-        $message='
-<html>
+        $endrow = 'Спасибо! Это ваш первый заказ!';
+    }
+    $message = '<html>
 <head>
   <title>Заказ номер '.$orderid.'</title>
 </head>
@@ -95,10 +84,9 @@ function generatemessage($clientinfo, $orderid, $orderscount)
   <p>Ваш заказ будет доставлен по адресу:</p>
   <p>'.$clientinfo['address'].'</p>
   <p>Заказ - DarkBeefBurger за 500 рублей, 1 шт</p>
-  <p>Спасибо! Это ваш первый заказ!</p>  
+  <p>'.$endrow.'</p>  
 </body>
 </html>
 ';
-    }
     return $message;
 }
