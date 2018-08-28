@@ -1,1 +1,1 @@
-http://localhost:63342/test1/burgers/admin.php?_ijt=3o0vapd20eeavi6ebq3b2bu110
+http://localhost:63342/test1/burgers/admin.php
