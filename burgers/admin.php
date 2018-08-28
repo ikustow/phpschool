@@ -1,7 +1,7 @@
 <?php
 $host="localhost";
 $user="root";
-$pass=""; //установленный вами пароль
+$pass="";
 $db_name="burgershop";
 $db_table = "Users";
 $mysqli = new mysqli($host, $user, $pass, $db_name);
@@ -11,13 +11,13 @@ echo "Данные по клиентам:";
 echo "<br>"."<br>";
 echo "<table width='50%' border='1'>";
 echo "<tr><td>ID</td><td>Client</td><td>Email</td><td>phone</td></tr>";
-while($myrow = $result->fetch_assoc()) {
+while ($myrow = $result->fetch_assoc()) {
         $ID = $myrow['ID'];
         $Client=$myrow['client'];
         $Email=$myrow['email'];
         $phone=$myrow['phone'];
         echo "<tr><td>$ID</td><td>$Client</td><td>$Email</td><td>$phone</td></tr>";
-    }
+}
 echo "</table>";
 
 
@@ -27,8 +27,8 @@ echo "<br>"."<br>";
 echo "Данные заказов:";
 echo "<br>"."<br>";
 echo "<table width='50%' border='1'>";
-echo "<tr><td>orderID</td><td>clientID</td><td>clientName</td><td>clientEmail</td></tr>";
-while($myrow = $result->fetch_assoc()) {
+echo "<tr><td>ID заказа</td><td>ID клиента</td><td>Клиент</td><td>E-mail</td></tr>";
+while ($myrow = $result->fetch_assoc()) {
     $orderID = $myrow['orderID'];
     $clientID=$myrow['clientID'];
     $clientName=$myrow['clientName'];

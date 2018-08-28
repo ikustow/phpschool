@@ -16,7 +16,7 @@ $firstvisit = false;
 
 $host="localhost";
 $user="root";
-$pass=""; //установленный вами пароль
+$pass="";
 $db_name="burgershop";
 $db_table = "Users";
 $mysqli = new mysqli($host, $user, $pass, $db_name);
@@ -43,7 +43,7 @@ function createorder($result)
 {
     $host = "localhost";
     $user = "root";
-    $pass = ""; //установленный вами пароль
+    $pass = "";
     $db_name = "burgershop";
     $db_table = "Users";
     $mysqli = new mysqli($host, $user, $pass, $db_name);
@@ -55,7 +55,7 @@ function createorder($result)
     sendemail($result,$neworderid);
 }
 
-function sendemail ($clientinfo, $orderid)
+function sendemail($clientinfo, $orderid)
 {
     $to = $clientinfo['email'];
     $address = $_POST['street'] . ", д." . $_POST['home'] . ", кор." . $_POST['part'] . ", кв." . $_POST['appt'] . ", эт." . $_POST['floor'];
@@ -64,16 +64,15 @@ function sendemail ($clientinfo, $orderid)
     $orderscount = $clientinfo['orders'];
 // текст письма
     if ($orderscount > 1) {
-        $message = '
-<html>
+        $message = '<html>
 <head>
-  <title>Заказ номер {orderid}</title>
+  <title>Заказ номер'.$orderid.'</title>
 </head>
 <body>
-  <p>Ваш заказ будет доставлен по адресу:”</p>
-  <p>{address}</p>
+  <p>Ваш заказ будет доставлен по адресу:</p>
+  <p>'.$address.'</p>
   <p>Заказ - DarkBeefBurger за 500 рублей, 1 шт</p>
-  <p>Спасибо! Это уже {$orderscount} заказ!</p>  
+  <p>Спасибо! Это уже '.$orderscount.' заказ!</p>  
 </body>
 </html>
 ';
@@ -81,11 +80,11 @@ function sendemail ($clientinfo, $orderid)
         $message = '
 <html>
 <head>
-  <title>Заказ номер {orderid}</title>
+  <title>Заказ номер'.$orderid.'</title>
 </head>
 <body>
   <p>Ваш заказ будет доставлен по адресу:”</p>
-  <p>{address}</p>
+  <p>'.$address.'</p>
   <p>Заказ - DarkBeefBurger за 500 рублей, 1 шт</p>
   <p>Спасибо! Это ваш первый заказ!</p>  
 </body>
@@ -96,7 +95,8 @@ function sendemail ($clientinfo, $orderid)
    // $headers = 'MIME-Version: 1.0' . "\r\n";
   //  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 // Отправляем
-   mail($to, $subject, $message);
-
-    echo "Ваш заказ оформлен! На указанный e-mail отправлено письмо";
+    //echo $to;
+    //print_r($message);
+    mail($to, $subject, $message);
+    echo "Ваш заказ оформлен! На указанный e-mail: ".$to." отправлено письмо";
 }
