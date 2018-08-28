@@ -61,9 +61,10 @@ function sendemail($clientinfo, $orderid)
     $address = $_POST['street'] . ", д." . $_POST['home'] . ", кор." . $_POST['part'] . ", кв." . $_POST['appt'] . ", эт." . $_POST['floor'];
 // тема письма
     $subject = 'Заказ с сайта burgers.ru';
-    $orderscount = $clientinfo['orders']+1;//костыль
+    $orderscount = $clientinfo['orders'];
 // текст письма
     if ($orderscount > 1) {
+        $orderscount = $clientinfo['orders']+1; // костыль
         $message = '<html>
 <head>
   <title>Заказ номер'.$orderid.'</title>
@@ -78,6 +79,7 @@ function sendemail($clientinfo, $orderid)
 </html>
 ';
     } else {
+
         $message = '
 <html>
 <head>
