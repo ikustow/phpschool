@@ -1,5 +1,6 @@
 <?php
 //Запишем данные формы в переменные
+require("/function.php");
 $name = $_POST['name'];
 if (empty($name)) {
     $name = "Клиент";
@@ -10,97 +11,23 @@ if (empty($email)) {
     echo "Для заказа, введите почту!";
     die;
 }
-$address = $_POST['street'].", д.".$_POST['home'].", кор.".$_POST['part'].", кв.".$_POST['appt'].", эт.".$_POST['floor'];
+$address = $_POST['street'] . ", д." . $_POST['home'] . ", кор." . $_POST['part'] . ", кв." . $_POST['appt'] . ", эт." . $_POST['floor'];
 $comment = $_POST['comment'];
-$firstvisit = false;
+$payment = $_POST['payment'];
+$callback = $_POST['callback'];
 
-$host="localhost";
-$user="root";
-$pass="";
-$db_name="burgershop";
-$db_table = "Users";
-$mysqli = new mysqli($host, $user, $pass, $db_name);
+$formdataarray = array([
+    "name" => $name,
+    "phone" => $phone,
+    "email" => $email,
+    "address" => $address,
+    "comment" => $comment,
+    "payment" => $payment,
+    "callback" => $callback
+]);
 
-// Ищем по почте
-$result = $mysqli->query("SELECT ID,client,email,orders,phone,address FROM  Users  WHERE email = '$email'");
-$result = $result->fetch_assoc();
-if ( empty($result) ) {
-    $result = $mysqli->query("INSERT INTO Users (client,email,orders,phone,address) VALUES ('$name','$email',1,'$phone','$address')");
-    $result = $mysqli->query("SELECT ID,client,email,orders,phone,address FROM  Users  WHERE email = '$email'");
-    $result = $result->fetch_assoc();
+$userdata = autorization($formdataarray);
 
-    $firstvisit = true;
-    createorder($result);
+$orderid = 0;
 
-} else {
-    $clientID = $result['ID'];
-    $orders = $result['orders'] + 1;
-    $mysqli->query("UPDATE Users SET orders ='$orders' WHERE ID = '$clientID'");
-
-    createorder($result);
-}
-function createorder($result)
-{
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $db_name = "burgershop";
-    $db_table = "Users";
-    $mysqli = new mysqli($host, $user, $pass, $db_name);
-    $orderclientID = $result['ID'];
-    $orderclientname = $result['client'];
-    $orderclientemail = $result['email'];
-    $comment = $_POST['comment'];
-    $payment = $_POST['payment'];
-    $callback = $_POST['callback'];
-    $address = $_POST['street'].", д.".$_POST['home'].", кор.".$_POST['part'].", кв.".$_POST['appt'].", эт.".$_POST['floor'];
-    $mysqli->query("INSERT INTO Orders (clientID,clientEmail,clientName,сomment,paymant,address,callback) VALUES ('$orderclientID','$orderclientemail','$orderclientname','$comment','$payment','$address','$callback')");
-    $neworderid = mysqli_insert_id($mysqli);
-    sendemail($result,$neworderid);
-}
-
-function sendemail($clientinfo, $orderid)
-{
-    $to = $clientinfo['email'];
-    $address = $_POST['street'] . ", д." . $_POST['home'] . ", кор." . $_POST['part'] . ", кв." . $_POST['appt'] . ", эт." . $_POST['floor'];
-// тема письма
-    $subject = 'Заказ с сайта burgers.ru';
-    $orderscount = $clientinfo['orders'];
-// текст письма
-    if ($orderscount > 1) {
-        $orderscount = $clientinfo['orders']+1; // костыль
-        $message = '<html>
-<head>
-  <title>Заказ номер'.$orderid.'</title>
-</head>
-<body>
-  <p>Заказ номер '.$orderid.'</p>
-  <p>Ваш заказ будет доставлен по адресу:</p>
-  <p>'.$address.'</p>
-  <p>Заказ - DarkBeefBurger за 500 рублей, 1 шт</p>
-  <p>Спасибо! Это уже '.$orderscount.' заказ!</p>  
-</body>
-</html>
-';
-    } else {
-        $message = '
-<html>
-<head>
-  <title>Заказ номер '.$orderid.'</title>
-</head>
-<body>
-  <p>Заказ номер '.$orderid.'</p>
-  <p>Ваш заказ будет доставлен по адресу:</p>
-  <p>'.$address.'</p>
-  <p>Заказ - DarkBeefBurger за 500 рублей, 1 шт</p>
-  <p>Спасибо! Это ваш первый заказ!</p>  
-</body>
-</html>
-';
-    }
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-    mail($to, $subject, $message, $headers);
-    echo "Ваш заказ оформлен! На указанный e-mail: ".$to." отправлено письмо";
-}
+createorder_and_sendemail($userdata, $orderid);
