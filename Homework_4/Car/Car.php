@@ -56,7 +56,7 @@ class Car
             $this->dist = $this->dist + 10;
             $this->temp = $this->temp + 5;
             if ($this->temp == 90) {
-                echo "Включаем охлаждение" . "<br>";
+                echo "Температура двигателя достигла ".$this->temp."! Включаем охлаждение" . "<br>";
                 $this->startCooling($this->temp);
             }
 
