@@ -20,7 +20,7 @@ class Car
     protected $endpoint;
     protected $transmission;
 
-    public function __construct($dist, $direction, $endpoint, $transmission, $temp, $horses)
+    protected function __construct($dist, $direction, $endpoint, $transmission, $temp, $horses)
     {
         $this -> dist = $dist;
         $this -> direction = $direction;
@@ -87,3 +87,4 @@ const FORWARD = "Вперед"; // едем вперед
 const BACK = "Назад"; // едем назад
 
 $myCar = new Priora(0, FORWARD, 500, MANUAL, 0, 12);
+

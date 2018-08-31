@@ -1,5 +1,5 @@
 <?php
-namespace Moveback {
+namespace Moveback{
 
     trait MoveBack
     {
