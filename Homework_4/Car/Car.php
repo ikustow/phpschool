@@ -61,14 +61,14 @@ class Car
 
         }
         echo "Удачно доехали!"."<br>";
-        if ($direction = BACK) {
+        if ($this->direction == BACK) {
             $this->transmitionOff();
         } elseif ($this->transmission = MANUAL) {
             $this->manualTransmitionOff();
         } else {
             $this->autoTransmitionOff();
         }
-        $this->engineoff();
+        $this->engineOff();
     }
 }
 
