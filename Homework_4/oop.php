@@ -8,7 +8,7 @@ trait Engine
     public function startcooling($hottemp)
     {
         $this->temp = $hottemp -10;
-        echo "Охладили двигатель, теперь температура:".$hottemp."<br>";
+        echo "Охладили двигатель, теперь температура:".$this->temp."<br>";
         $this->coolingoff();
         return $this->temp;
     }
@@ -101,7 +101,7 @@ class Car
     public function settransmission()
     {
         //констракт передает какой тип коробки
-        if ($direction = BACK) {
+        if ($this->direction == BACK) {
             $this->back();
         } elseif ($this->transmission = MANUAL) {
             $this->moveForvard_manual();
@@ -113,9 +113,9 @@ class Car
     public function drive()
     {
         while ($this->dist <= $this->endpoint) {
+            echo "Проехали " . $this->dist . " Температура двигателя: " . $this->temp . "<br>";
             $this->dist = $this->dist + 10;
             $this->temp = $this->temp + 5;
-            echo "Проехали " . $this->dist . " Температура двигателя: " . $this->temp . "<br>";
             if ($this->temp == MAXTEMP) {
                 echo "Включаем охлаждение" . "<br>";
                 $this->startcooling($this->temp);
@@ -138,13 +138,13 @@ class Car
 //Создаем объект(экземпляр класса) автомобиля
 $myCar = new Car();
 const MAXTEMP = 90;
-const MANUAL = true; // Ручная коробка
-const AUTO = true;   // Автоматическая
-const FORVARD = true; // едем вперед
-const BACK = true; // едем назад
+const MANUAL = "Ручная"; // Ручная коробка
+const AUTO = "Автоматическая";   // Автоматическая
+const FORVARD ="Вперед"; // едем вперед
+const BACK = "Назад"; // едем назад
 $myCar->transmission = MANUAL;
-$myCar->horses = 120;
-$myCar->dist=100;
+$myCar->horses = 20;
+$myCar->dist=0;
 $myCar->endpoint=500;
 $myCar->direction = FORVARD;
 $myCar->temp = 0;
