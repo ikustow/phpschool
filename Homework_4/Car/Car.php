@@ -72,7 +72,7 @@ class Car
     }
 }
 
-class Priora extends Car
+class Kia extends Car
 {
     public function __construct($dist, $direction, $endpoint, $transmission, $temp, $horses)
     {
@@ -86,5 +86,4 @@ const AUTO = "Автоматическая";   // Автоматическая
 const FORWARD = "Вперед"; // едем вперед
 const BACK = "Назад"; // едем назад
 
-$myCar = new Priora(0, FORWARD, 500, MANUAL, 0, 12);
-
+$Optima = new Kia(0, FORWARD, 500, MANUAL, 0, 12);
