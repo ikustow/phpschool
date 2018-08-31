@@ -7,10 +7,10 @@ trait Engine
 
     public function startcooling($hottemp)
     {
-        $hottemp = $hottemp -10;
+        $this->temp = $hottemp -10;
         echo "Охладили двигатель, теперь температура:".$hottemp."<br>";
         $this->coolingoff();
-        return $hottemp;
+        return $this->temp;
     }
 
     public function coolingoff()
@@ -31,7 +31,7 @@ trait Engine
 
 trait TransmissionAuto
 {
-    use moveBack;
+  //  use moveBack;
 
     public function moveForvard_manual()
     {
@@ -42,7 +42,7 @@ trait TransmissionAuto
             echo "включили вторую передачу и разогнались до ".$this->speed." км/ч"."<br>";
         }
     }
-    public function transmitionoff()
+    public function manualtransmitionoff()
     {
         echo "Выключили коробку передач". "<br>";
     }
@@ -51,7 +51,7 @@ trait TransmissionAuto
 
 trait TransmissionManual
 {
-    use moveBack;
+  //  use moveBack;
 
     public function moveForvard_auto()
     {
@@ -59,7 +59,7 @@ trait TransmissionManual
         echo "включили автоматическую передачу в режим D и разогнались до ".$this->speed." км/ч"."<br>";
     }
 
-    public function transmitionoff()
+    public function autotransmitionoff()
     {
     echo "Выключили коробку передач". "<br>";
     }
@@ -83,6 +83,7 @@ class Car
     use Engine;
     use TransmissionAuto;
     use TransmissionManual;
+    use moveBack;
 
     public $speed;
     public $dist;
@@ -111,18 +112,24 @@ class Car
 
     public function drive()
     {
-        while ($this->dist = $this->endpoint) {
+        while ($this->dist <= $this->endpoint) {
             $this->dist = $this->dist + 10;
             $this->temp = $this->temp + 5;
             echo "Проехали " . $this->dist . " Температура двигателя: " . $this->temp . "<br>";
-            if ($this->temp = 90) {
+            if ($this->temp == MAXTEMP) {
                 echo "Включаем охлаждение" . "<br>";
                 $this->startcooling($this->temp);
             }
 
         }
         echo "Удачно доехали!"."<br>";
-        $this->transmitionoff();
+        if ($direction = BACK) {
+            $this->transmitionoff();
+        } elseif ($this->transmission = MANUAL) {
+            $this->manualtransmitionoff();
+        } else {
+            $this->autotransmitionoff();
+        }
         $this->engineoff();
     }
 }
@@ -130,6 +137,7 @@ class Car
 
 //Создаем объект(экземпляр класса) автомобиля
 $myCar = new Car();
+const MAXTEMP = 90;
 const MANUAL = true; // Ручная коробка
 const AUTO = true;   // Автоматическая
 const FORVARD = true; // едем вперед
