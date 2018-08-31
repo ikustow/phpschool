@@ -31,6 +31,7 @@ class Car
     }
     public function start()
     {
+        $this->speed = $this->horses*2*3.6;
         $this->startEngine();
         $this->setTransmission();
         $this->drive();
@@ -41,7 +42,7 @@ class Car
 
         if ($this->direction == BACK) {
             $this->back();
-        } elseif ($this->transmission = MANUAL) {
+        } elseif ($this->transmission == MANUAL) {
             $this->moveForwardManual();
         } else {
             $this->moveForwardAuto();
@@ -63,7 +64,7 @@ class Car
         echo "Удачно доехали!"."<br>";
         if ($this->direction == BACK) {
             $this->transmitionOff();
-        } elseif ($this->transmission = MANUAL) {
+        } elseif ($this->transmission == MANUAL) {
             $this->manualTransmitionOff();
         } else {
             $this->autoTransmitionOff();
