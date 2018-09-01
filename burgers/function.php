@@ -1,76 +1,81 @@
 <?php
 require(__DIR__.'\SQLconnect.php');
-function autorization($formdataarray)
+function autorization($formData)
 {
     $mysqli = connect();
 
-    $name = $formdataarray['name'];
-    $email = $formdataarray['email'];
-    $phone = $formdataarray['phone'];
-    $address = $formdataarray['address'];
+    $name = $formData['name'];
+    $email = $formData['email'];
+    $phone = $formData['phone'];
+    $address = $formData['address'];
 
-    $usersqueryresult = $mysqli->query("SELECT ID,client,email,orders,phone,address FROM  users  WHERE email = '$email'");
-    $usersassocarray = $usersqueryresult->fetch_assoc();
-    if (empty($usersassocarray)) {
+    $usersQueryResult = $mysqli->query("SELECT ID,client,email,orders,phone,address FROM  users  WHERE email = '$email'");
+    $users = $usersQueryResult->fetch_assoc();
+    if (empty($users)) {
         $mysqli->query("INSERT INTO users (client,email,orders,phone,address) VALUES ('$name','$email',0,'$phone','$address')");
-        $usersqueryresult = $mysqli->query("SELECT ID,client,email,orders,phone,address FROM  users  WHERE email = '$email'");
-        $usersassocarray = $usersqueryresult->fetch_assoc();
+        $usersQueryResult = $mysqli->query("SELECT ID,client,email,orders,phone,address FROM  users  WHERE email = '$email'");
+        $users = $usersQueryResult->fetch_assoc();
 
-        return $usersassocarray;
-
+        return $users;
     } else {
-        $clientID = $usersassocarray['ID'];
-        $orders = $usersassocarray['orders'] + 1;
+        $clientID = $users['ID'];
+        $orders = $users['orders'] + 1;
+
         $mysqli->query("UPDATE users SET orders ='$orders' WHERE ID = '$clientID'");  //Добавляем заказ к общему количеству
-        return $usersassocarray;
+        return $users;
     }
 }
 
-function createorder_and_sendemail($userdata, $orderdata, $orderid)
+function createorder($userData, $orderData, $orderid, $emailInfo)
 {
-    //print_r($userdata);
-    $orderclientID = $userdata['ID'];
-    $orderclientname = $userdata['client'];
-    $orderclientemail = $userdata['email'];
-    $comment = $orderdata['comment'];
-    $payment = $orderdata['payment'];
-    $callback = $orderdata['callback'];
-    $address = $orderdata['address'];
-    $orderscount = $userdata['orders'];
+    //print_r($userData);
+    $orderClientID = $userData['ID'];
+    $orderClientName = $userData['client'];
+    $orderClientEmail = $userData['email'];
+    $comment = $orderData['comment'];
+    $payment = $orderData['payment'];
+    $callback = $orderData['callback'];
+    $address = $orderData['address'];
+    $ordersCount = $userData['orders'];
+
 
     $mysqli = connect();
 
-    $mysqli->query("INSERT INTO orders (clientID,clientEmail,clientName,сomment,paymant,address,callback) VALUES ('$orderclientID','$orderclientemail','$orderclientname','$comment','$payment','$address','$callback')");
+    $mysqli->query("INSERT INTO orders (clientID,clientEmail,clientName,сomment,paymant,address,callback) VALUES ('$orderClientID','$orderClientEmail','$orderClientName','$comment','$payment','$address','$callback')");
 
     $orderid = mysqli_insert_id($mysqli);
 
-    sendemail($orderclientemail, $orderscount, $orderdata, $orderid);
+  return  $emailInfo = array(
+        "email" => $orderClientEmail,
+        "ordersCount" => $ordersCount,
+        "clientInfo" => $orderData,
+        "orderid" => $orderid);
 }
 
-function sendemail($orderclientemail, $orderscount, $clientinfo, $orderid)
+function sendemail($orderClientEmail, $ordersCount, $clientInfo, $orderid)
 {
-    $to = $orderclientemail;
+    $to = $orderClientEmail;
     $subject = 'Заказ с сайта burgers.ru';
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-    $orderscount = $orderscount+1;
+    $ordersCount = $ordersCount+1;
 
-    $message = generatemessage($clientinfo, $orderid, $orderscount);
+    $message = generatemessage($clientInfo, $orderid, $ordersCount);
 
-    $sendsucsess = mail($to, $subject, $message, $headers);
+    $sendSucsess = mail($to, $subject, $message, $headers);
 
-    if ($sendsucsess) {
+    if ($sendSucsess) {
         echo "Ваш заказ оформлен! На указанный e-mail: ".$to." отправлено письмо";
     } else {
         echo "Произошла ошибка отправки";
     }
 }
 
-function generatemessage($clientinfo, $orderid, $orderscount)
+function generatemessage($clientInfo, $orderid, $ordersCount)
 {
-    if ($orderscount > 1) {
-        $endrow = 'Спасибо! Это уже ' . $orderscount . ' заказ!';
+    if ($ordersCount > 1) {
+        $endrow = 'Спасибо! Это уже ' . $ordersCount . ' заказ!';
     } else {
         $endrow = 'Спасибо! Это ваш первый заказ!';
     }
@@ -81,7 +86,7 @@ function generatemessage($clientinfo, $orderid, $orderscount)
 <body>
   <p>Заказ номер '.$orderid.'</p>
   <p>Ваш заказ будет доставлен по адресу:</p>
-  <p>'.$clientinfo['address'].'</p>
+  <p>'.$clientInfo['address'].'</p>
   <p>Заказ - DarkBeefBurger за 500 рублей, 1 шт</p>
   <p>'.$endrow.'</p>  
 </body>

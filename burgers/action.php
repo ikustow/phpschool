@@ -16,18 +16,23 @@ $comment = $_POST['comment'];
 $payment = $_POST['payment'];
 $callback = $_POST['callback'];
 
-$formdataarray = array(
+$formData = array(
     "name" => $name,
     "phone" => $phone,
     "email" => $email
 );
-$orderdata = array(
+$orderData = array(
     "comment" => $comment,
     "payment" => $payment,
     "callback" => $callback,
     "address" => $address
 );
 
-$userdata = autorization($formdataarray);
+$userData = autorization($formData);
+
 $orderid = 0;
-createorder_and_sendemail($userdata, $orderdata, $orderid);
+$emailInfo = array();
+
+$emailInfo = createorder($userData, $orderData, $orderid, $emailInfo);
+
+sendemail($emailInfo["email"], $emailInfo["ordersCount"], $emailInfo["clientInfo"], $emailInfo["orderid"]);
