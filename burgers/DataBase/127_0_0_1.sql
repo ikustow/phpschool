@@ -45,7 +45,7 @@ CREATE TABLE `Orders` (
 -- Дамп данных таблицы `Orders`
 --
 
-INSERT INTO `Orders` (`orderID`, `clientID`, `clientName`, `clientEmail`, `сomment`, `address`, `paymant`, `callback`) VALUES
+INSERT INTO orders (`orderID`, `clientID`, `clientName`, `clientEmail`, `сomment`, `address`, `paymant`, `callback`) VALUES
 (7, 4, 'Илья', 'ikustow@yandex.ru', NULL, NULL, NULL, NULL),
 (8, 4, 'Илья', 'ikustow@yandex.ru', NULL, NULL, NULL, NULL),
 (9, 4, 'Илья', 'ikustow@yandex.ru', NULL, NULL, NULL, NULL),
@@ -104,7 +104,7 @@ CREATE TABLE `Users` (
 -- Дамп данных таблицы `Users`
 --
 
-INSERT INTO `Users` (`ID`, `client`, `email`, `orders`, `phone`, `address`) VALUES
+INSERT INTO users (`ID`, `client`, `email`, `orders`, `phone`, `address`) VALUES
 (4, 'Илья', 'ikustow@yandex.ru', 25, '', ', д., кор., кв., эт.'),
 (7, 'Саша', 'kustova-photo@yandex.ru', 11, '+7 (999) 999 99 99', 'проспект Ленина, д.25, кор.1, кв.14, эт.5'),
 (8, 'Кустов', 'ilya.kustov.90@mail.ru', 1, '+7 (888) 888 88 88', 'проспект Ленина, д.25, кор.1, кв.14, эт.5');
@@ -116,13 +116,13 @@ INSERT INTO `Users` (`ID`, `client`, `email`, `orders`, `phone`, `address`) VALU
 --
 -- Индексы таблицы `Orders`
 --
-ALTER TABLE `Orders`
+ALTER TABLE orders
   ADD PRIMARY KEY (`orderID`);
 
 --
 -- Индексы таблицы `Users`
 --
-ALTER TABLE `Users`
+ALTER TABLE users
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -132,13 +132,13 @@ ALTER TABLE `Users`
 --
 -- AUTO_INCREMENT для таблицы `Orders`
 --
-ALTER TABLE `Orders`
+ALTER TABLE orders
   MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT для таблицы `Users`
 --
-ALTER TABLE `Users`
+ALTER TABLE users
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 

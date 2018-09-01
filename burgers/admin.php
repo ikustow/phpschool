@@ -5,7 +5,7 @@ $pass="";
 $db_name="burgershop";
 $db_table = "Users";
 $mysqli = new mysqli($host, $user, $pass, $db_name);
-$result = $mysqli->query("SELECT * FROM  Users ");
+$result = $mysqli->query("SELECT * FROM  users ");
 
 echo "Данные по клиентам:";
 echo "<br>"."<br>";
@@ -20,7 +20,7 @@ while ($myrow = $result->fetch_assoc()) {
 }
 echo "</table>";
 
-$result = $mysqli->query("SELECT * FROM  Orders ");
+$result = $mysqli->query("SELECT * FROM  orders ");
 
 echo "<br>"."<br>";
 echo "Данные заказов:";
