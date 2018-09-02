@@ -1,12 +1,12 @@
 <?php
 
-//namespace App;
+namespace App;
 
 class Main
 {
     public function index()
     {
         $view = new \View();
-        $view->render(__DIR__.'views/users/enter');
+        $view->render('mvc/views/users/enter.php');
     }
 }
