@@ -13,9 +13,9 @@ echo "<table width='50%' border='1'>";
 echo "<tr><td>ID</td><td>Client</td><td>Email</td><td>phone</td></tr>";
 while ($myrow = $result->fetch_assoc()) {
         $ID = $myrow['ID'];
-        $Client=$myrow['client'];
-        $Email=$myrow['email'];
-        $phone=$myrow['phone'];
+        $Client = $myrow['client'];
+        $Email = $myrow['email'];
+        $phone = $myrow['phone'];
         echo "<tr><td>$ID</td><td>$Client</td><td>$Email</td><td>$phone</td></tr>";
 }
 echo "</table>";
@@ -29,10 +29,10 @@ echo "<table width='50%' border='1'>";
 echo "<tr><td>ID заказа</td><td>ID клиента</td><td>Клиент</td><td>E-mail</td><td>Адрес</td></tr>";
 while ($myrow = $result->fetch_assoc()) {
     $orderID = $myrow['orderID'];
-    $clientID=$myrow['clientID'];
-    $clientName=$myrow['clientName'];
-    $clientEmail=$myrow['clientEmail'];
-    $clientAdd=$myrow['address'];
+    $clientID = $myrow['clientID'];
+    $clientName = $myrow['clientName'];
+    $clientEmail = $myrow['clientEmail'];
+    $clientAdd = $myrow['address'];
     echo "<tr><td>$orderID</td><td>$clientID</td><td>$clientName</td><td>$clientEmail</td><td>$clientAdd</td></tr>";
 }
 echo "</table>";

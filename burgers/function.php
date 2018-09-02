@@ -41,7 +41,7 @@ function createorder($userData, $orderData, $orderid, $emailInfo)
 
     $mysqli = connect();
 
-    $mysqli->query("INSERT INTO orders (clientID,clientEmail,clientName,сomment,paymant,address,callback) VALUES ('$orderClientID','$orderClientEmail','$orderClientName','$comment','$payment','$address','$callback')");
+    $mysqli->query("INSERT INTO orders (clientID,clientEmail,clientName,сomment,payment,address,callback) VALUES ('$orderClientID','$orderClientEmail','$orderClientName','$comment','$payment','$address','$callback')");
 
     $orderid = mysqli_insert_id($mysqli);
 

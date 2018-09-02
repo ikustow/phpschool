@@ -45,7 +45,7 @@ CREATE TABLE `Orders` (
 -- Дамп данных таблицы `Orders`
 --
 
-INSERT INTO orders (`orderID`, `clientID`, `clientName`, `clientEmail`, `сomment`, `address`, `paymant`, `callback`) VALUES
+INSERT INTO orders (`orderID`, `clientID`, `clientName`, `clientEmail`, `сomment`, `address`, payment, `callback`) VALUES
 (7, 4, 'Илья', 'ikustow@yandex.ru', NULL, NULL, NULL, NULL),
 (8, 4, 'Илья', 'ikustow@yandex.ru', NULL, NULL, NULL, NULL),
 (9, 4, 'Илья', 'ikustow@yandex.ru', NULL, NULL, NULL, NULL),
