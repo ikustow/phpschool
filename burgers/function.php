@@ -45,7 +45,7 @@ function createorder($userData, $orderData, $orderid, $emailInfo)
 
     $orderid = mysqli_insert_id($mysqli);
 
-  return  $emailInfo = array(
+    return  $emailInfo = array(
         "email" => $orderClientEmail,
         "ordersCount" => $ordersCount,
         "clientInfo" => $orderData,
