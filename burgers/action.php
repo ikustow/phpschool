@@ -31,7 +31,6 @@ $orderData = array(
 $userData = autorization($formData);
 
 $orderid = 0;
-$emailInfo = array();
 
 $emailInfo = createorder($userData, $orderData, $orderid, $emailInfo);
 
