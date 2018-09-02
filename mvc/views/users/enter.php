@@ -1,5 +1,5 @@
 
-<h1>Данный логин/пароль в системе не найден! Введите данные повторно или зарегистрируйтесь</h1>
+<h1>Введите логин / пароль</h1>
 <form action="/users/finduser" method="post">
     <label>
         Email  <input type="text" name="login">
@@ -15,7 +15,7 @@
 </form>
 <form action="/users/create" method="post">
     <label>
-        <input type="submit" value="Зарегестрироваться">
+        <input type="submit" value="Зарегистрироваться">
     </label>
 </form>
 

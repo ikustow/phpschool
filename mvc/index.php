@@ -15,7 +15,7 @@ $action_name = "index";
 //    $action_name = $routes[2];
 //}
 
-$filename = "controllers/".strtolower($controller_name).".php";
+$filename = strtolower($controller_name).".php";
 
 try {
     if (file_exists($filename)) {
@@ -24,7 +24,7 @@ try {
         throw new Exception('File not found: '.$filename);
     }
 
-    $classname = "\App\\".ucfirst($controller_name);
+    $classname = "\mvc\\".ucfirst($controller_name);
 
     if (class_exists($classname)) {
         $controller = new $classname();
