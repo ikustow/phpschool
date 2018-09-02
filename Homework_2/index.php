@@ -42,8 +42,8 @@ echo "<br>";
 echo "=====Function 5=====".PHP_EOL;
 
 echo "<br>";
-$string_f4 =  "Карл у Клары украл Кораллы";
-$delsymbol = task5_1($string_f4);
+$string =  "Карл у Клары украл Кораллы";
+$delsymbol = task5_1($string);
 echo $delsymbol;
 echo "<br>";
 

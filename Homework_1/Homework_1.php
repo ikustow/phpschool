@@ -2,41 +2,33 @@
 //Задание 1
 echo "<br>";
 echo "task 1 ->\n";
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 $name = "Илья";
 $age = "28";
 echo "\"Меня зовут: $name\"";
 echo "<br>";
 echo "\"Мне $age лет\"";
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 echo "“!|\/’”\\";
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 echo "\n<- End task 1";
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 //Задание 2
 echo "\ntask 2 ->\n";
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 const ALLPIC = 80;
 const FLOMPIC = 23;
 const PENCPIC = 40;
 const DRAW = ALLPIC - FLOMPIC - PENCPIC;
 echo "<br>";
 echo DRAW;
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 echo "\n<- End task 2";
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 //Задание 3
 
 echo "\ntask 3 ->\n";
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 $age = mt_rand(1, 99);
 //echo $age;
 
@@ -53,11 +45,9 @@ if ($age >= 18 && $age <= 65) {
     echo "<br>";
     echo "Неизвестное число";
 }
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 echo "\n<- End task 3";
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 //Задание 4
 
 echo "\ntask 4 ->\n";
@@ -81,8 +71,7 @@ switch ($day) {
         echo "<br>";
         echo "Неизвестный день";
 }
-echo "<br>";
-echo "<br>";
+echo "<br>"."<br>";
 echo "\n <- End task 4";
 echo "<br>";
 //Задание 5

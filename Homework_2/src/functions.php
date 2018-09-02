@@ -1,12 +1,12 @@
 <?php
-function task1($string, $allstring = null)
+function task1($string, $allString = null)
 {
-    if ($allstring == false) {
+    if ($allString == false) {
         foreach ($string as &$string) {
             echo "$string" . "<p>";
         }
     }
-    if ($allstring == true) {
+    if ($allString == true) {
         $string = implode(' ', $string);
         return $string;
     }
@@ -14,12 +14,12 @@ function task1($string, $allstring = null)
 
 function task2()
 {
-    $arg_list = func_get_args();
-    $oper = array_shift($arg_list);
-    $mix_string = implode($oper, $arg_list);
-    $result = eval("return $mix_string;");
-    $mix_func_result = $mix_string."=".$result;
-    return $mix_func_result;
+    $argList = func_get_args();
+    $oper = array_shift($argList);
+    $mixString = implode($oper, $argList);
+    $result = eval("return $mixString;");
+    $mixFuncResult = $mixString."=".$result;
+    return $mixFuncResult;
 }
 
 
@@ -57,8 +57,8 @@ function task3($tablerow, $tablecol)
 
 function task4_1()
 {
-    $currentdate = date("Y-m-d H:i");
-    return $currentdate;
+    $currentDate = date("Y-m-d H:i");
+    return $currentDate;
 }
 
 function task4_2()
@@ -67,9 +67,9 @@ function task4_2()
     return $unixtime;
 }
 
-function task5_1($string_f4)
+function task5_1($string)
 {
-    $delstring = str_replace("К", "", $string_f4);
+    $delstring = str_replace("К", "", $string);
     return $delstring;
 }
 function task5_2($string)
