@@ -8,17 +8,19 @@ require_once("moveBack.php");
 
 class Car
 {
-    use \engine\Engine;
-    use \TransmissionAuto\TransmissionAuto;
-    use \TransmissionManual\TransmissionManual;
-    use \Moveback\MoveBack;
-
+    use Engine;
+    use TransmissionAuto;
+    use TransmissionManual;
+    use MoveBack;
 
     protected $speed;
     protected $dist;
     protected $direction;
     protected $endpoint;
     protected $transmission;
+    const BACK = "Назад";
+    const MANUAL = "Ручная";
+    const COEF = 5.6;
 
     protected function __construct($dist, $direction, $endpoint, $transmission, $temp, $horses)
     {
@@ -31,7 +33,7 @@ class Car
     }
     public function start()
     {
-        $this->speed = $this->horses*2*3.6;
+        $this->speed = $this->horses*self::COEF; //перевод в км/ч
         $this->startEngine();
         $this->setTransmission();
         $this->drive();
@@ -62,9 +64,9 @@ class Car
 
         }
         echo "Удачно доехали!"."<br>";
-        if ($this->direction == BACK) {
+        if ($this->direction == self::BACK) {
             $this->transmitionOff();
-        } elseif ($this->transmission == MANUAL) {
+        } elseif ($this->transmission == self::MANUAL) {
             $this->manualTransmitionOff();
         } else {
             $this->autoTransmitionOff();
@@ -73,11 +75,4 @@ class Car
     }
 }
 
-class Kia extends Car
-{
-    public function __construct($dist, $direction, $endpoint, $transmission, $temp, $horses)
-    {
-        parent::__construct($dist, $direction, $endpoint, $transmission, $temp, $horses);
-        $this->start();
-    }
-}
+
