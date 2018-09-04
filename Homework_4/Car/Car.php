@@ -20,20 +20,23 @@ class Car
     protected $transmission;
     const BACK = "Назад";
     const MANUAL = "Ручная";
-    const COEF = 5.6; // показатель для перевода в км/ч
+    const SPEED_VALUE_COEF = 5.6; // показатель для перевода в км/ч
+    const RANGE_STEP = 10;
+    const TEMPERATURE_STEP = 5;
+    const MAX_TEMPERATURE = 90;
 
     protected function __construct($dist, $direction, $endpoint, $transmission, $temp, $horses)
     {
-        $this -> dist = $dist;
-        $this -> direction = $direction;
-        $this -> endpoint = $endpoint;
-        $this -> transmission = $transmission;
-        $this -> temp = $temp;
-        $this -> horses = $horses;
+        $this->dist = $dist;
+        $this->direction = $direction;
+        $this->endpoint = $endpoint;
+        $this->transmission = $transmission;
+        $this->temp = $temp;
+        $this->horses = $horses;
     }
     public function start()
     {
-        $this->speed = $this->horses*self::COEF;
+        $this->speed = $this->horses*self::SPEED_VALUE_COEF;
         $this->startEngine();
         $this->setTransmission();
         $this->drive();
@@ -42,9 +45,9 @@ class Car
     protected function setTransmission()
     {
 
-        if ($this->direction == BACK) {
+        if ($this->direction == self::BACK) {
             $this->back();
-        } elseif ($this->transmission == MANUAL) {
+        } elseif ($this->transmission == self::MANUAL) {
             $this->moveForwardManual();
         } else {
             $this->moveForwardAuto();
@@ -55,9 +58,9 @@ class Car
     {
         while ($this->dist <= $this->endpoint) {
             echo "Проехали " . $this->dist . " Температура двигателя: " . $this->temp . "<br>";
-            $this->dist = $this->dist + 10;
-            $this->temp = $this->temp + 5;
-            if ($this->temp == 90) {
+            $this->dist = $this->dist + self::RANGE_STEP;
+            $this->temp = $this->temp + self::TEMPERATURE_STEP;
+            if ($this->temp == self::MAX_TEMPERATURE) {
                 echo "Температура двигателя достигла ".$this->temp."! Включаем охлаждение" . "<br>";
                 $this->startCooling($this->temp);
             }
@@ -74,5 +77,3 @@ class Car
         $this->engineOff();
     }
 }
-
-
