@@ -1,5 +1,6 @@
 <?php
-require_once("Car.php");
+require_once("Car/Car.php");
+
 const MANUAL = "Ручная";
 const AUTO = "Автоматическая";
 const FORWARD = "Вперед";
