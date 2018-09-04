@@ -1,29 +1,30 @@
 <?php
-trait Engine
-{
-    protected $temp;
-    protected $horses;
-
-    protected function startCooling($hotTemp)
+namespace car;
+    trait Engine
     {
-        $this->temp = $hotTemp - 10;
-        echo "Охладили двигатель, теперь температура:" . $this->temp . "<br>";
-        $this->coolingoff();
-        return $this->temp;
-    }
+        protected $temp = 0;
+        protected $horses;
 
-    protected function coolingOff()
-    {
-        echo "Выключили охлаждение" . "<br>";
-    }
+        protected function coolingOn($hotTemp)
+        {
+            $this->temp = $hotTemp - 10;
+            echo "Охладили двигатель, теперь температура:" . $this->temp . "<br>";
+            $this->coolingoff();
+            return $this->temp;
+        }
 
-    protected function startEngine()
-    {
-        echo "Включили двигатель" . "<br>";
-    }
+        protected function coolingOff()
+        {
+            echo "Выключили охлаждение" . "<br>";
+        }
 
-    protected function engineOff()
-    {
-        echo "Выключили двигатель" . "<br>";
+        protected function startEngine()
+        {
+            echo "Включили двигатель" . "<br>";
+        }
+
+        protected function engineOff()
+        {
+            echo "Выключили двигатель" . "<br>";
+        }
     }
-}

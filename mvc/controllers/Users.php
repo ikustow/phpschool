@@ -1,10 +1,7 @@
 <?php
 
-namespace App;
-
 class Users
 {
-
     public function store()
     {
         $name = $_POST['name'];
@@ -22,16 +19,15 @@ class Users
         $user->age = $age;
         $user->info = $info;
         $user->avatar = $avatar;
-        $user->
-        $user->save();
+        $user->user->save();
         $view = new \View();
-        $view->render('users/userpage',$user);
+        $view->render('userpage.php',$user);
     }
 
     public function create()
     {
         $view = new \View();
-        $view->render('users/registration');
+        $view->render('registration.php');
     }
 
     public function finduser()
@@ -39,13 +35,13 @@ class Users
         $login = $_POST['login'];
         $password = $_POST['password'];
 
-        $user = \User::findUser($login,$password);
+        $user = \User::findUser($login, $password);
         if (!empty($user)) {
             $view = new \View();
-            $view->render('users/userpage',$user);
-        }else {
+            $view->render('userpage.php', $user);
+        } else {
             $view = new \View();
-            $view->render('users/infopage');
+            $view->render('infopage.php');
         }
     }
 }

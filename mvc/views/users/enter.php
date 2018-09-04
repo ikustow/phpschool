@@ -1,6 +1,6 @@
 
 <h1>Введите логин / пароль</h1>
-<form action="/users/finduser" method="post">
+<form action="/mvc/controllers/Users/finduser" method="post">
     <label>
         Email  <input type="text" name="login">
     </label>
@@ -13,7 +13,7 @@
         <input type="submit" value="Войти">
     </label>
 </form>
-<form action="/users/create" method="post">
+<form action="users/create" method="post">
     <label>
         <input type="submit" value="Зарегистрироваться">
     </label>

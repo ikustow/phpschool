@@ -1,28 +1,41 @@
 <?php
+
+require_once "vendor/autoload.php";
 require_once "config.php";
-require_once "core/views.php";
+require_once "core/Views.php";
+require_once "core/MainContoller.php";
+//require_once "views/users/Views.php";
+require_once "controllers/Users.php";
+require_once "controllers/Main.php";
 
 $routes = explode('/', $_SERVER['REQUEST_URI']);
+
 $controller_name = "Main";
 $action_name = 'index';
-// получаем контроллер
-//if (!empty($routes[1])) {
-//    $controller_name = $routes[1];
-//}
-// получаем действие
-//if (!empty($routes[2])) {
-//    $action_name = $routes[2];
-//}
-$filename = "controllers/".strtolower($controller_name).".php";
+
+if (!empty($routes[2])) {
+    $controller_name = $routes[3];
+}
+
+if (!empty($routes[3])) {
+    $action_name = $routes[3];
+}
+$controller_name = "Main";
+$action_name = 'enter';
+
+$filename = "controllers/".($controller_name).".php";
+
 try {
     if (file_exists($filename)) {
         require_once $filename;
     } else {
         throw new Exception("File not found");
     }
-    $classname = '\App\\'.ucfirst($controller_name);
+    $classname = 'App\\'.ucfirst($controller_name);
     if (class_exists($classname)) {
         $controller = new $classname();
+
+
     } else {
         throw new Exception("File found but class not found");
     }

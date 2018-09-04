@@ -1,15 +1,10 @@
 <?php
-
-trait MoveBack
-{
-    protected function back()
+namespace car;
+    trait MoveBack
     {
+        protected function back()
+        {
 
-        echo "Включили заднюю передачу" . "и разогнались до " . $this->speed . " км/ч" . "<br>";
+            echo "Включили заднюю передачу" . "и разогнались до " . $this->speed . " м/с" . "<br>";
+        }
     }
-
-    protected function transmitionOff()
-    {
-        echo "Выключили коробку передач" . "<br>";
-    }
-}
