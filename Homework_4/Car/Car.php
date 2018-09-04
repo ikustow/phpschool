@@ -20,7 +20,7 @@ class Car
     protected $transmission;
     const BACK = "Назад";
     const MANUAL = "Ручная";
-    const COEF = 5.6;
+    const COEF = 5.6; // показатель для перевода в км/ч
 
     protected function __construct($dist, $direction, $endpoint, $transmission, $temp, $horses)
     {
@@ -33,7 +33,7 @@ class Car
     }
     public function start()
     {
-        $this->speed = $this->horses*self::COEF; //перевод в км/ч
+        $this->speed = $this->horses*self::COEF;
         $this->startEngine();
         $this->setTransmission();
         $this->drive();
