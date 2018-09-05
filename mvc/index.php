@@ -20,8 +20,6 @@ if (!empty($routes[2])) {
 if (!empty($routes[3])) {
     $action_name = $routes[3];
 }
-$controller_name = "Main";
-$action_name = 'enter';
 
 $filename = "controllers/".($controller_name).".php";
 
