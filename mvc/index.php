@@ -14,7 +14,7 @@ $controller_name = "Main";
 $action_name = 'index';
 
 if (!empty($routes[2])) {
-    $controller_name = $routes[3];
+    $controller_name = $routes[2];
 }
 
 if (!empty($routes[3])) {
