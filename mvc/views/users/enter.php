@@ -1,6 +1,6 @@
 
 <h1>Введите логин / пароль</h1>
-<form action="/mvc/controllers/Users/finduser" method="post">
+<form action="/Users/finduser" method="post">
     <label>
         Email  <input type="text" name="login">
     </label>
