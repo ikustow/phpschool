@@ -1,5 +1,7 @@
 <?php
 require(__DIR__.'\SQLconnect.php');
+require_once 'C:\OSPanel\domains\localhost\homeworks\vendor\autoload.php';
+require_once 'C:\OSPanel\domains\localhost\homeworks\vendor\swiftmailer\swiftmailer\lib\swift_required.php';
 function autorization($formData)
 {
     $mysqli = connect();
@@ -15,7 +17,7 @@ function autorization($formData)
         $mysqli->query("INSERT INTO users (client,email,orders,phone,address) VALUES ('$name','$email',0,'$phone','$address')");
         $usersQueryResult = $mysqli->query("SELECT ID,client,email,orders,phone,address FROM  users  WHERE email = '$email'");
         $users = $usersQueryResult->fetch_assoc();
-
+        sendRegEmail($users);
         return $users;
     } else {
         $clientID = $users['ID'];
@@ -24,6 +26,27 @@ function autorization($formData)
         $mysqli->query("UPDATE users SET orders ='$orders' WHERE ID = '$clientID'");  //Добавляем заказ к общему количеству
         return $users;
     }
+}
+
+function sendRegEmail($userInfo){
+
+    $transport = (new Swift_SmtpTransport('smtp.yandex.ru', 465,'ssl'))
+        ->setUsername('ikustow@yandex.ru')
+        ->setPassword('Ak2137345')
+    ;
+
+     $mailer = new Swift_Mailer($transport);
+
+     $message = (new Swift_Message('Welcome'))
+        ->setFrom(['ikustow@yandex.ru' => 'Burger Shop'])
+        ->setTo(['ikustow@yandex.ru' => 'A name'])
+        ->setBody('Спасибо за регистрацию!')
+    ;
+
+    $result = $mailer->send($message);
+    return $result;
+
+
 }
 
 function createorder($userData, $orderData, $orderid, $emailInfo)

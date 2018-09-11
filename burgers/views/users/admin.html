@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AdminPanel</title>
+</head>
+<body>
+    <label>
+        <p>Список пользователей:</p>
+    </label>
+    <table width='50%' border='1'>
+        <tr><td>ID</td><td>Client</td><td>Email</td><td>phone</td></tr>
+        {% for user in users %}
+       <tr><td>{{user.ID}}</td><td>{{user.client}}</td><td>{{user.emsil}}</td><td>{{user.phone}}</td></tr>
+        {% endfor %}
+       </table>
+    <label>
+        <p>Список заказов:</p>
+    </label>
+    <p>Файлы:</p>
+    <table width='50%' border='1'>
+        <tr><td>ID заказа</td><td>ID клиента</td><td>Клиент</td><td>E-mail</td><td>Адрес</td></tr>
+        {% for order in orders %}
+        <tr><td>{{order.orderID}}</td><td>{{order.clientID}}</td><td>{{order.clientName}}</td><td>{{order.clientEmail}}</td><td>{{order.address}}</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
