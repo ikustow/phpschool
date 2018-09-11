@@ -39,7 +39,7 @@ function sendRegEmail($userInfo){
 
      $message = (new Swift_Message('Welcome'))
         ->setFrom(['ikustow@yandex.ru' => 'Burger Shop'])
-        ->setTo(['ikustow@yandex.ru' => 'A name'])
+        ->setTo([$userInfo['email'] => $userInfo['name']])
         ->setBody('Спасибо за регистрацию!')
     ;
 
