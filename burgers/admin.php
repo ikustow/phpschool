@@ -1,6 +1,6 @@
 <?php
 require_once "core/View.php";
-require_once 'C:\OSPanel\domains\localhost\homeworks\vendor\autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'\homeworks\vendor\autoload.php';
 
 $host="localhost";
 $user="root";
