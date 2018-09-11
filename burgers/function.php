@@ -32,7 +32,7 @@ function sendRegEmail($userInfo){
 
     $transport = (new Swift_SmtpTransport('smtp.yandex.ru', 465,'ssl'))
         ->setUsername('ikustow@yandex.ru')
-        ->setPassword('Ak2137345')
+        ->setPassword('******')
     ;
 
      $mailer = new Swift_Mailer($transport);
